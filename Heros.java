@@ -1,4 +1,5 @@
 
+
 public class Heros {
 	int PointDeVie;
 	
@@ -7,7 +8,7 @@ public class Heros {
 		this.setPointDeVie(15);
 	}
 	
-	private void setPointDeVie( int pdv )
+	public void setPointDeVie( int pdv )
 	{
 		this.PointDeVie = pdv;
 	}

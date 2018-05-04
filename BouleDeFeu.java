@@ -1,3 +1,7 @@
+package Capacité;
+import Heros;
+import ICapacite;
+
 
 public class BouleDeFeu implements ICapacite{
 	String nom;
@@ -35,35 +39,28 @@ public class BouleDeFeu implements ICapacite{
 		this.degat = degat;
 	}
 	
-	void executerEffetDebutTour(){
-		
-	}
-	void executerEffetFinTour(){
-		
-	}
-	void executerAction(Heros cible);
-	{
-		
-	}
-	void executerEffetMiseEnJeu(Heros cible)
-	{
-		cible.setPointDeVie(cible.PointDeVie-1);
-	}
-	void executerEffetDisparition(Heros cible);
-
-	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+	public void executerEffetDebutTour(){
 		
 	}
 	
+	public void executerEffetFinTour(){
+		
+	}
+	
+	public void executerAction(Object cible) {
+		if ( !cible instanceof Sort)
+		{
+			cible.setPointDeVie(cible.PointDeVie -1);
+		}
+	}
+	
+	
+	public void executerEffetMiseEnJeu(Object cible)
+	{
+		
+	}
+	
+	void executerEffetDisparition(Heros cible) {
+	}
+
 }

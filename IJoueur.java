@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 
 
+
 public interface IJoueur {
 	public final static int MAX_MANA=10;
 	public final static int TAILLE_DECK=15;
@@ -12,7 +13,7 @@ public interface IJoueur {
 	ArrayList<ICarte> getMain();
 	ArrayList<ICarte> getJeu();
 	ICarte getCarteEnJeu(String nomCarte);
-	ICarte getCarteEnMain(String nomCarteMaon);
+	ICarte getCarteEnMain(String nomCarteMain);
 	void prendreTour();
 	void finirTour();
 	void pioche();

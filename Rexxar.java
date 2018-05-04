@@ -1,42 +1,33 @@
 package Heros;
 import Heros;
 import ICapacite;
-import Capacité.BouleDeFeu;
+import Capacité.CriDeGuerre;
 
 
-public class Jayna extends Heros {
+public class Rexxar extends Heros {
 	String nom;
 	ICapacite pouvoir;
 	
-	public Jayna ()
+	public Rexxar ()
 	{
-		this.setNom("Jayna");
-		this.setPouvoir(new BouleDeFeu());
-	}
-	
-	public String getNom()
-	{
-		return this.nom;
-	}
-	
-	public void setNom(String nom)
-	{
-		this.nom=nom;
-	}
-	
-	public ICapacite getPouvoir()
-	{
-		return this.pouvoir;
-	}
-	
-	public void setPouvoir(ICapacite pouvoir)
-	{
-		this.pouvoir=pouvoir;
+		this.setNom("Rexxar");
+		this.setPouvoir(new CriDeGuerre());
 	}
 
-	@Override
-	public String toString() {
-		return "Jayna [nom=" + nom + ", pouvoir=" + pouvoir + "]";
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public ICapacite getPouvoir() {
+		return pouvoir;
+	}
+
+	public void setPouvoir(ICapacite pouvoir) {
+		this.pouvoir = pouvoir;
 	}
 
 	public boolean equals(Object obj) {
@@ -46,7 +37,7 @@ public class Jayna extends Heros {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Jayna other = (Jayna) obj;
+		Rexxar other = (Rexxar) obj;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
@@ -59,6 +50,10 @@ public class Jayna extends Heros {
 			return false;
 		return true;
 	}
-	
-	
+
+
+
+	public String toString() {
+		return "Rexxar [nom=" + nom + ", pouvoir=" + pouvoir + "]";
+	}
 }
