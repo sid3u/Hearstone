@@ -1,4 +1,2 @@
 # Hearstone
 
-
-ddd
