@@ -1,4 +1,5 @@
-package Sort;
+
+
 
 
 public class AttaqueMentale extends Sort{
@@ -51,7 +52,7 @@ public void executerEffetDebutTour(Object cible){
 	}
 	
 	public void executerEffetMiseEnJeu(Object cible){
-		cible.getHeros().PointDeVie -=5;
+		((Joueur)cible).getHeros().PointDeVie -=5;
 	}
 	
 	public void executerEffetDisparition(Object cible){
@@ -60,5 +61,11 @@ public void executerEffetDebutTour(Object cible){
 	
 	public boolean disparait(){
 		return true;
+	}
+
+	@Override
+	public IJoueur getProprietaire() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,19 +1,15 @@
-package Capacité;
-import Heros;
-import ICapacite;
-
+import java.util.ArrayList;
 
 public class CriDeGuerre implements ICapacite {
 	String nom;
 	String description;
 	int degat;
-	
-	public CriDeGuerre()
-	{
-	this.setNom("BouleDeFeu");
-	this.setDescription("Inflige 1 point de dégat au personnage ciblé");
-	this.setDegat(1);
-}
+
+	public CriDeGuerre() {
+		this.setNom("BouleDeFeu");
+		this.setDescription("Inflige 1 point de dégat au personnage ciblé");
+		this.setDegat(1);
+	}
 
 	public String getNom() {
 		return nom;
@@ -66,34 +62,33 @@ public class CriDeGuerre implements ICapacite {
 		return "CriDeGuerre [nom=" + nom + ", description=" + description
 				+ ", degat=" + degat + "]";
 	}
-	
-public void executerEffetDebutTour(){
-		
+
+	public void executerEffetDebutTour() {
+
 	}
-	
-	public void executerEffetFinTour(){
-		
+
+	public void executerEffetFinTour() {
+
 	}
-	
+
 	public void executerAction(Object cible) {
-		liste = cible.getJeu();
-		
-		for ( Icarte carte : liste )
-		{
-			if ( carte instanceof Serviteur)
-			{
-				carte.PointDeVie -= 2;
+		ArrayList<ICarte> liste = ((Joueur)cible).getJeu();
+
+		for (ICarte carte : liste) {
+			if (carte instanceof Serviteur) {
+				((Serviteur) carte)
+						.setPointDeVie(((Serviteur) carte).PointDeVie - 1);
 			}
 		}
 	}
-	
-	public void executerEffetMiseEnJeu(Object cible)
-	{
+
+	public void executerEffetMiseEnJeu(Object cible) {
+
+	}
+
+	public void executerEffetDisparition(Object cible) {
 		
 	}
-	
-	void executerEffetDisparition(Heros cible) {
-	}
-	
-}
 
+
+}

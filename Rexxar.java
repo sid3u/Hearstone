@@ -1,15 +1,9 @@
-package Heros;
-import Heros;
-import ICapacite;
-import Capacité.CriDeGuerre;
-
 
 public class Rexxar extends Heros {
 	String nom;
 	ICapacite pouvoir;
-	
-	public Rexxar ()
-	{
+
+	public Rexxar() {
 		this.setNom("Rexxar");
 		this.setPouvoir(new CriDeGuerre());
 	}
@@ -50,8 +44,6 @@ public class Rexxar extends Heros {
 			return false;
 		return true;
 	}
-
-
 
 	public String toString() {
 		return "Rexxar [nom=" + nom + ", pouvoir=" + pouvoir + "]";

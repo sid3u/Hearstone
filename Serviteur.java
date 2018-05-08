@@ -1,15 +1,11 @@
-package Serviteur;
-import ICarte;
-
 
 public abstract class Serviteur implements ICarte {
-	int PointDeVie;
+	public int PointDeVie;
 	String nom;
 	int cout;
 	int attaque;
-	
-	public Serviteur (int pdv, int cout,String nom,int attaque)
-	{
+
+	public Serviteur(int pdv, int cout, String nom, int attaque) {
 		this.setPointDeVie(pdv);
 		this.setCout(cout);
 		this.setNom(nom);
@@ -72,12 +68,18 @@ public abstract class Serviteur implements ICarte {
 		return "Serviteur [PointDeVie=" + PointDeVie + ", nom=" + nom
 				+ ", cout=" + cout + "]";
 	}
-	
-	IJoueur getProprietaire();
+
+	public abstract IJoueur getProprietaire();
+
 	public abstract void executerEffetDebutTour(Object cible);
+
 	public abstract void executerEffetFinTour();
+
 	public abstract void executerAction(Object cible);
+
 	public abstract void executerEffetMiseEnJeu(Object cible);
+
 	public abstract void executerEffetDisparition(Object cible);
+
 	public abstract boolean disparait();
 }

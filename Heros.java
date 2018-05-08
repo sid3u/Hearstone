@@ -1,7 +1,7 @@
 
 
 public class Heros {
-	int PointDeVie;
+	public int PointDeVie;
 	
 	public Heros()
 	{
