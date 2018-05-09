@@ -1,3 +1,6 @@
+package ICarte;
+import IJoueur.IJoueur;
+
 
 public abstract class Serviteur implements ICarte {
 	public int PointDeVie;

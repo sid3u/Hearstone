@@ -1,3 +1,6 @@
+package ICarte;
+
+import IJoueur.IJoueur;
 
 
 public interface ICarte {

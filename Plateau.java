@@ -1,58 +1,85 @@
+package IPlateau;
+
 import java.util.ArrayList;
+
+import IJoueur.IJoueur;
+
 
 public class Plateau implements IPlateau {
 
-	private ArrayList<IJoueur> LesJoueurs;
+	IJoueur joueur1;
+	IJoueur joueur2;
+	boolean tourjoueur1;
+	boolean tourjoueur2;
+	boolean partie;
 	
-	private Plateau(){
-	LesJoueurs = new ArrayList<IJoueur>();
+	public Plateau(){
+		partie = false;
+		tourjoueur1 = false;
+		tourjoueur2 = false;
 		}
 	
-
 	public void ajouterJoueur(IJoueur joueur){
-		if (LesJoueurs.size() < 2)
-		    LesJoueurs.add(joueur);
-	};
+		if (joueur1 == null)
+		{
+			joueur1 = joueur;
+		}
+		else
+		{
+			joueur2 = joueur;
+		}
+	}
 	
 	public IJoueur getJoueurCourant() {
-		return null;
+		if (tourjoueur1 == true)
+		{
+			return joueur1;
+		}
+		else
+		{
+			return joueur2;
+		}
 	}
+	
 	public void setJoueurCourant(IJoueur joueur) {
+		if (joueur1.equals(joueur))
+		{
+			tourjoueur1 = true;
+		}
+		else {
+			tourjoueur2 = true;
+		}
 	}
 	
 	public IJoueur getAdversaire(IJoueur joueur) {
-		for ( IJoueur e : LesJoueurs ){
-			if (!e.equals(joueur))
-			   return e;
+		if (joueur1.equals(joueur))
+		{
+			return joueur2;
 		}
-		return null; 
+		else {
+			return joueur1;
+		}
 	}
 	
 	public void demarrerPartie() {
+		partie = true;
 	}
+	
 	public boolean estDemarree() {
-		return false;
+		return partie;
 	}
+	
 	public void finTour(IJoueur joueur) {
+		if (joueur1.equals(joueur))
+		{
+			tourjoueur1 = false;
+		}
+		else {
+			tourjoueur2 = false;
+		}
 	}
+	
 	public void gagnerPartie(IJoueur joueur) {
+		
 	}
-
-
-
-
-
-
-
-
-
-
-
 }
-
-	/*	ça doit surement servir dans le main à crée un plateau truc du singleton
-	  	static private Plateau plateau = null;
-		static public Plateau getIntouve(){
-			if (plateau == null)
-				plateau = new Plateau();
-			return plateau; */

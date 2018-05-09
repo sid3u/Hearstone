@@ -1,4 +1,15 @@
+package ICapacité;
+
+
+
+
 import java.util.ArrayList;
+
+import ICarte.ICarte;
+import ICarte.Serviteur;
+import IJoueur.Joueur;
+
+
 
 public class CriDeGuerre implements ICapacite {
 	String nom;
@@ -6,8 +17,8 @@ public class CriDeGuerre implements ICapacite {
 	int degat;
 
 	public CriDeGuerre() {
-		this.setNom("BouleDeFeu");
-		this.setDescription("Inflige 1 point de dégat au personnage ciblé");
+		this.setNom("Cri de guerre");
+		this.setDescription("Inflige 2 points de dégats à tous les serviteurs");
 		this.setDegat(1);
 	}
 

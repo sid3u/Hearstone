@@ -1,4 +1,11 @@
+package IJoueur;
+
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import ICarte.ICarte;
+import ICarte.Serviteur;
+
 
 public class Joueur implements IJoueur {
 
@@ -8,10 +15,17 @@ public class Joueur implements IJoueur {
 	int mana;
 	ArrayList<ICarte> main;
 	ArrayList<ICarte> jeu;
-
+	ArrayList<ICarte> deck;
+	boolean disparait;
+	
 	public Joueur(Heros h, String p) {
 		heros = h;
 		pseudo = p;
+		main = new ArrayList<ICarte> ();
+		jeu = new ArrayList<ICarte> ();
+		deck = new ArrayList<ICarte> ();
+		tour = false;
+		disparait = false;
 	}
 
 	public Heros getHeros() {
@@ -80,7 +94,7 @@ public class Joueur implements IJoueur {
 	}
 
 	public ICarte getCarteEnMain(String nomCarteMain) {
-		;
+		
 		if (main.contains(nomCarteMain)) {
 			int i = 0;
 			{
@@ -96,16 +110,26 @@ public class Joueur implements IJoueur {
 	}
 
 	public void prendreTour() {
+		
 	}
 
 	public void finirTour() {
+		 = false;
 	}
 
 	public void pioche() {
+		ICarte lll;
+		lll = deck.get(0);
+		main.add(lll);
+		deck.remove(0);
 	}
 
 	public void jouerCarte(ICarte carte) {
-
+		System.out.println("Donnez le numero de la carte que vous voulez jouer");
+		Scanner sc = new Scanner(System.in);
+	    int i = sc.nextInt();
+	    jeu.add(main.get(i-1));
+	    main.remove(i-1);
 	}
 
 	public void utiliserCarte(ICarte carte, Object cible) {
@@ -115,16 +139,24 @@ public class Joueur implements IJoueur {
 	}
 
 	public void utiliserPouvoir(Object cible) {
-
+		
 	}
 
 	public void perdreCarte(ICarte carte) {
-
+		disparait = true;
 	}
 
 	public int getStockMana() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public boolean isTour() {
+		return tour;
+	}
+
+	public void setTour(boolean tour) {
+		this.tour = tour;
 	}
 
 }

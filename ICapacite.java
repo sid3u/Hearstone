@@ -1,3 +1,4 @@
+package ICapacité;
 
 public interface ICapacite {
 	String getNom();

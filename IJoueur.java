@@ -1,5 +1,10 @@
+package IJoueur;
+
 
 import java.util.ArrayList;
+
+import ICarte.ICarte;
+
 
 
 
@@ -21,4 +26,6 @@ public interface IJoueur {
 	void utiliserCarte(ICarte carte,Object cible);
 	void utiliserPouvoir(Object cible);
 	void perdreCarte(ICarte carte);
+	boolean isTour();
+	void setTour(boolean tour);
 }

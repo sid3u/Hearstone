@@ -1,6 +1,14 @@
+package ICarte;
+
+import IJoueur.Heros;
+import IJoueur.IJoueur;
+
+
+
 public class ChasseMareeMurloc extends Serviteur {
 	String nomcapacite;
 	String Description;
+	IJoueur joueur;
 
 	public ChasseMareeMurloc() {
 		super(1, 2, "Chasse-marée murloc", 2);
@@ -88,7 +96,7 @@ public class ChasseMareeMurloc extends Serviteur {
 
 	public IJoueur getProprietaire() {
 		// TODO Auto-generated method stub
-		return null;
+		return ;
 	}
 
 	@Override

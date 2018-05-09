@@ -1,11 +1,13 @@
-
-
+package ICapacité;
+import ICarte.Sort;
+import IJoueur.IJoueur;
+import IJoueur.Joueur;
 
 
 public class AttaqueMentale extends Sort{
 	String description;
 	
-	public AttaqueMentale(String description)
+	public AttaqueMentale()
 	{
 		super("Attaque Mentale",2);
 		this.setDescription("Inflige 5 points de dégats aux héros");

@@ -1,3 +1,11 @@
+package ICapacité;
+import ICarte.Serviteur;
+import IJoueur.Heros;
+
+
+
+
+
 public class BouleDeFeu implements ICapacite {
 	String nom;
 	String description;

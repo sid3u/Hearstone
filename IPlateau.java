@@ -1,3 +1,6 @@
+package IPlateau;
+
+import IJoueur.IJoueur;
 
 public interface IPlateau {
 	void ajouterJoueur(IJoueur joueur);
