@@ -6,18 +6,26 @@ import IJoueur.IJoueur;
 
 
 public class Plateau implements IPlateau {
-
+	private static Plateau instance = null;
 	IJoueur joueur1;
 	IJoueur joueur2;
 	boolean tourjoueur1;
 	boolean tourjoueur2;
 	boolean partie;
 	
-	public Plateau(){
+	private Plateau(){
 		partie = false;
 		tourjoueur1 = false;
 		tourjoueur2 = false;
 		}
+	
+	public static Plateau getInstance(){
+		if (instance == null)
+		{
+			instance = new Plateau();
+		}
+		return instance;
+	}
 	
 	public void ajouterJoueur(IJoueur joueur){
 		if (joueur1 == null)

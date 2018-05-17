@@ -1,21 +1,59 @@
 package ICarte;
+
+import ICapacité.ICapacite;
+import IJoueur.Heros;
 import IJoueur.IJoueur;
+import IPlateau.IPlateau;
+import IPlateau.Plateau;
 
-
-public abstract class Serviteur implements ICarte {
-	public int PointDeVie;
+public class Serviteur implements ICarte {
+	public int pointdevie;
 	String nom;
 	int cout;
 	int attaque;
 	boolean disparait;
+	ICapacite capacite;
+	IJoueur proprietaire;
+	IJoueur adversaire = Plateau.getInstance().getAdversaire(proprietaire);
+	IPlateau plateau = Plateau.getInstance();
 
-	public Serviteur(int pdv, int cout, String nom, int attaque) {
+	public Serviteur(int pdv, int cout, String nom, int attaque,
+			ICapacite capacite, IJoueur proprietaire) {
+		this.setNom(nom);
 		this.setPointDeVie(pdv);
 		this.setCout(cout);
-		this.setNom(nom);
 		this.setAttaque(attaque);
+		this.setProprietaire(proprietaire);
 	}
-	
+
+	public boolean isDisparait() {
+		return disparait;
+	}
+
+	public void setDisparait(boolean disparait) {
+		this.disparait = disparait;
+	}
+
+	public ICapacite getCapacite() {
+		return capacite;
+	}
+
+	public void setCapacite(ICapacite capacite) {
+		this.capacite = capacite;
+	}
+
+	public int getPointdevie() {
+		return pointdevie;
+	}
+
+	public void setPointdevie(int pointdevie) {
+		this.pointdevie = pointdevie;
+	}
+
+	public void setProprietaire(IJoueur proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+
 	public Serviteur(String nom, int pdv, int cout, int attaque) {
 		this.setPointDeVie(pdv);
 		this.setCout(cout);
@@ -32,11 +70,11 @@ public abstract class Serviteur implements ICarte {
 	}
 
 	public int getPointDeVie() {
-		return PointDeVie;
+		return pointdevie;
 	}
 
 	public void setPointDeVie(int pointDeVie) {
-		PointDeVie = pointDeVie;
+		pointdevie = pointDeVie;
 	}
 
 	public String getNom() {
@@ -51,7 +89,7 @@ public abstract class Serviteur implements ICarte {
 		if (getClass() != obj.getClass())
 			return false;
 		Serviteur other = (Serviteur) obj;
-		if (PointDeVie != other.PointDeVie)
+		if (pointdevie != other.pointdevie)
 			return false;
 		if (cout != other.cout)
 			return false;
@@ -76,21 +114,68 @@ public abstract class Serviteur implements ICarte {
 	}
 
 	public String toString() {
-		return "Serviteur [PointDeVie=" + PointDeVie + ", nom=" + nom
+		return "Serviteur [pointdevie=" + pointdevie + ", nom=" + nom
 				+ ", cout=" + cout + "]";
 	}
 
-	public abstract IJoueur getProprietaire();
+	public IJoueur getProprietaire() {
+		return this.proprietaire;
+	}
 
-	public abstract void executerEffetDebutTour(Object cible);
+	public void executerEffetDebutTour(Object cible) {
+		this.capacite.executerEffetDebutTour();
+	}
 
-	public abstract void executerEffetFinTour();
+	public void executerEffetFinTour() {
+		this.capacite.executerEffetFinTour();
+	}
 
-	public abstract void executerAction(Object cible);
+	public void executerAction(Object cible) throws HearthstoneException{
+			if (( cible instanceof Serviteur ) || (cible instanceof  Heros))
+			{
+				if (((Serviteur)cible).capacite.getNom().equals("Provocation"))
+				{
+					((Serviteur)cible).pointdevie-= this.attaque;
+				}
+				else {
+					for (ICarte c : adversaire.getJeu())
+					{
+						if ((c != cible) && (c instanceof Serviteur) && (((Serviteur)c).getCapacite().equals("Provocation")))
+						{
+							throw HearthstoneException("Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation" );
+						}
+						else if ((((Serviteur)c).getCapacite().equals("Provocation") ) && (cible instanceof Heros))
+						{
+							throws HearthstoneException("Vous essayez d'attaquer un heros alors qu'un serviteur a provocation");
+						}
+					}
+					((Serviteur)cible).pointdevie-=this.attaque;
+				}
+			}
+			else if (cible instanceof Heros){
+				
+			}
+			if ((cible instanceof Heros ) &&(this.capacite.getNom().equals("Charge")))
+			{
+				
+			}
+			
+		}
+	}
 
-	public abstract void executerEffetMiseEnJeu(Object cible);
+	public void executerEffetMiseEnJeu(Object cible) {
+		this.capacite.executerEffetMiseEnJeu(cible);
+	}
 
-	public abstract void executerEffetDisparition(Object cible);
+	public void executerEffetDisparition(Object cible) {
+		this.capacite.executerEffetDisparition(cible);
+	}
 
-	public abstract boolean disparait();
+	public boolean disparait() {
+		if (this.pointdevie == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
