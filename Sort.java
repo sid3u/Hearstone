@@ -2,10 +2,11 @@ package ICarte;
 import IJoueur.IJoueur;
 
 
-public abstract class Sort implements ICarte {
+public class Sort implements ICarte {
 	String nom;
 	int cout;
-
+	IJoueur proprietaire;
+	
 	public Sort(String nom, int cout) {
 		this.setNom(nom);
 		this.setCout(cout);
@@ -49,17 +50,31 @@ public abstract class Sort implements ICarte {
 		return true;
 	}
 
-	public abstract IJoueur getProprietaire();
+	public IJoueur getProprietaire() {
+		return proprietaire;
+	}
 
-	public abstract void executerEffetDebutTour(Object cible);
+	public void setProprietaire(IJoueur proprietaire) {
+		this.proprietaire = proprietaire;
+	}
 
-	public abstract void executerEffetFinTour();
+	public  void executerEffetDebutTour(Object cible) {
+	}
 
-	public abstract void executerAction(Object cible);
+	public void executerEffetFinTour() {
+	}
 
-	public abstract void executerEffetMiseEnJeu(Object cible);
+	public void executerAction(Object cible) {
+	}
 
-	public abstract void executerEffetDisparition(Object cible);
+	public void executerEffetMiseEnJeu(Object cible) {
+		this.executerEffetMiseEnJeu(cible);
+	}
 
-	public abstract boolean disparait();
+	public void executerEffetDisparition(Object cible) {
+	}
+
+	public boolean disparait() {
+		return true;
+	}
 }
