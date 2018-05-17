@@ -2,9 +2,9 @@ package IJoueur;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import ICarte.ICarte;
 import ICarte.Serviteur;
+import IJoueur.Heros; 
 
 public class Joueur implements IJoueur {
 
@@ -137,7 +137,7 @@ public class Joueur implements IJoueur {
 	}
 
 	public void utiliserPouvoir(Object cible) {
-
+             heros.getPouvoir().executerAction(cible);
 	}
 
 	public void perdreCarte(ICarte carte) {
