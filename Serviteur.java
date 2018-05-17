@@ -7,8 +7,16 @@ public abstract class Serviteur implements ICarte {
 	String nom;
 	int cout;
 	int attaque;
+	boolean disparait;
 
 	public Serviteur(int pdv, int cout, String nom, int attaque) {
+		this.setPointDeVie(pdv);
+		this.setCout(cout);
+		this.setNom(nom);
+		this.setAttaque(attaque);
+	}
+	
+	public Serviteur(String nom, int pdv, int cout, int attaque) {
 		this.setPointDeVie(pdv);
 		this.setCout(cout);
 		this.setNom(nom);

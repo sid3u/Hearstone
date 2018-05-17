@@ -4,13 +4,32 @@ import IJoueur.IJoueur;
 import IJoueur.Joueur;
 
 
-public class AttaqueMentale extends Sort{
+public class AttaqueMentale implements ICapacite{
 	String description;
+	String nom;
+	int degat;
 	
 	public AttaqueMentale()
 	{
-		super("Attaque Mentale",2);
+		this.setNom("BouleDeFeu");
+		this.setDegat(1);
 		this.setDescription("Inflige 5 points de dégats aux héros");
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public int getDegat() {
+		return degat;
+	}
+
+	public void setDegat(int degat) {
+		this.degat = degat;
 	}
 
 	public String getDescription() {
@@ -61,13 +80,9 @@ public void executerEffetDebutTour(Object cible){
 		
 	}
 	
-	public boolean disparait(){
-		return true;
-	}
 
-	@Override
-	public IJoueur getProprietaire() {
+	public void executerEffetDebutTour() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 }

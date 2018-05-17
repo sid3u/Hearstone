@@ -1,6 +1,6 @@
 package IPlateau;
 
-import java.util.ArrayList;
+
 
 import IJoueur.IJoueur;
 
