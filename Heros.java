@@ -4,13 +4,13 @@ import ICapacité.ICapacite;
 
 
 public class Heros {
-	public int PointDeVie;
+	public int pointdevie;
 	String nom;
 	ICapacite pouvoir;
 	
 	public Heros(String nom,ICapacite pouvoir)
 	{
-		this.setPointDeVie(15);
+		this.setPointdevie(15);
 		this.setNom(nom);
 		this.setPouvoir(pouvoir);
 	}
@@ -31,13 +31,13 @@ public class Heros {
 		this.pouvoir = pouvoir;
 	}
 
-	public void setPointDeVie( int pdv )
+	public void setPointdevie( int pdv )
 	{
-		this.PointDeVie = pdv;
+		this.pointdevie = pdv;
 	}
 	
-	public int getPointDeVie()
+	public int getPointdevie()
 	{
-		return this.PointDeVie;
+		return this.pointdevie;
 	}
 }

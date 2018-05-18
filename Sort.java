@@ -1,15 +1,13 @@
 package ICarte;
+import Exception.HearthstoneException;
+import ICapacité.ICapacite;
 import IJoueur.IJoueur;
 
 
-public class Sort implements ICarte {
-	String nom;
-	int cout;
-	IJoueur proprietaire;
+public class Sort extends Carte {
 	
-	public Sort(String nom, int cout) {
-		this.setNom(nom);
-		this.setCout(cout);
+	public Sort(String nom, int cout,ICapacite capacite,IJoueur proprietaire) {
+		super(nom,cout,capacite,proprietaire);
 	}
 
 	public String getNom() {
@@ -64,11 +62,12 @@ public class Sort implements ICarte {
 	public void executerEffetFinTour() {
 	}
 
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HearthstoneException{
+		throw new HearthstoneException("Vous ne pouvez pas attaquer avec cette carte");
 	}
 
-	public void executerEffetMiseEnJeu(Object cible) {
-		this.executerEffetMiseEnJeu(cible);
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+		this.getCapacite().executerEffetMiseEnJeu(cible);
 	}
 
 	public void executerEffetDisparition(Object cible) {

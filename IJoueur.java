@@ -3,6 +3,7 @@ package IJoueur;
 
 import java.util.ArrayList;
 
+import Exception.HearthstoneException;
 import ICarte.ICarte;
 
 
@@ -23,7 +24,12 @@ public interface IJoueur {
 	void finirTour();
 	void pioche();
 	void jouerCarte(ICarte carte);
-	void utiliserCarte(ICarte carte,Object cible);
-	void utiliserPouvoir(Object cible);
+	void utiliserCarte(ICarte carte,Object cible) throws HearthstoneException;
+	void utiliserPouvoir(Object cible)throws HearthstoneException;
 	void perdreCarte(ICarte carte);
+	void ajoutercarte(ICarte carte) throws HearthstoneException;
+	public ICarte getCarteMain(int position) throws HearthstoneException;
+	public ICarte getCarteJeu(int position) throws HearthstoneException;
+	String toStringmain();
+	String toStringjeu();
 }

@@ -1,25 +1,19 @@
 package ICapacité;
 
-
-
-
 import java.util.ArrayList;
 
+import Exception.HearthstoneException;
 import ICarte.ICarte;
 import ICarte.Serviteur;
 import IJoueur.Joueur;
 
-
-
 public class CriDeGuerre implements ICapacite {
 	String nom;
 	String description;
-	int degat;
 
 	public CriDeGuerre() {
 		this.setNom("Cri de guerre");
 		this.setDescription("Inflige 2 points de dégats à tous les serviteurs");
-		this.setDegat(1);
 	}
 
 	public String getNom() {
@@ -38,14 +32,6 @@ public class CriDeGuerre implements ICapacite {
 		this.description = description;
 	}
 
-	public int getDegat() {
-		return degat;
-	}
-
-	public void setDegat(int degat) {
-		this.degat = degat;
-	}
-
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -54,8 +40,7 @@ public class CriDeGuerre implements ICapacite {
 		if (getClass() != obj.getClass())
 			return false;
 		CriDeGuerre other = (CriDeGuerre) obj;
-		if (degat != other.degat)
-			return false;
+		
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -71,35 +56,34 @@ public class CriDeGuerre implements ICapacite {
 
 	public String toString() {
 		return "CriDeGuerre [nom=" + nom + ", description=" + description
-				+ ", degat=" + degat + "]";
+				 + "]";
 	}
 
-	public void executerEffetDebutTour() {
-
-	}
-
-	public void executerEffetFinTour() {
+	public void executerEffetDebutTour()throws HearthstoneException {
 
 	}
 
-	public void executerAction(Object cible) {
-		ArrayList<ICarte> liste = ((Joueur)cible).getJeu();
+	public void executerEffetFinTour()throws HearthstoneException {
+
+	}
+
+	public void executerAction(Object cible)throws HearthstoneException {
+		
+	}
+
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException{
+		ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
 
 		for (ICarte carte : liste) {
 			if (carte instanceof Serviteur) {
 				((Serviteur) carte)
-						.setPointDeVie(((Serviteur) carte).PointDeVie - 1);
+						.setPointdevie(((Serviteur) carte).getPointdevie() - 2);
 			}
 		}
 	}
 
-	public void executerEffetMiseEnJeu(Object cible) {
+	public void executerEffetDisparition(Object cible) throws HearthstoneException{
 
 	}
-
-	public void executerEffetDisparition(Object cible) {
-		
-	}
-
 
 }

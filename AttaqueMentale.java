@@ -1,18 +1,15 @@
 package ICapacité;
-import ICarte.Sort;
-import IJoueur.IJoueur;
+import Exception.HearthstoneException;
 import IJoueur.Joueur;
 
 
 public class AttaqueMentale implements ICapacite{
 	String description;
 	String nom;
-	int degat;
 	
 	public AttaqueMentale()
 	{
 		this.setNom("BouleDeFeu");
-		this.setDegat(1);
 		this.setDescription("Inflige 5 points de dégats aux héros");
 	}
 
@@ -24,14 +21,6 @@ public class AttaqueMentale implements ICapacite{
 		this.nom = nom;
 	}
 
-	public int getDegat() {
-		return degat;
-	}
-
-	public void setDegat(int degat) {
-		this.degat = degat;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -41,7 +30,7 @@ public class AttaqueMentale implements ICapacite{
 	}
 
 	public String toString() {
-		return "AttaqueMentale [description=" + description + "]";
+		return "AttaqueMentale [description=" + getDescription() + "]";
 	}
 
 	public boolean equals(Object obj) {
@@ -60,29 +49,25 @@ public class AttaqueMentale implements ICapacite{
 		return true;
 	}
 	
-public void executerEffetDebutTour(Object cible){
+	public void executerEffetFinTour()throws HearthstoneException{
+	
+	}
+	
+	public void executerAction(Object cible)throws HearthstoneException{
+	
+	}
+	
+	public void executerEffetMiseEnJeu(Object cible)throws HearthstoneException{
+		((Joueur)cible).getHeros().setPointdevie(((Joueur)cible).getHeros().getPointdevie() -5);
+	}
+	
+	public void executerEffetDisparition(Object cible)throws HearthstoneException{
 		
 	}
-	
-	public void executerEffetFinTour(){
-	
-	}
-	
-	public void executerAction(Object cible){
-	
-	}
-	
-	public void executerEffetMiseEnJeu(Object cible){
-		((Joueur)cible).getHeros().PointDeVie -=5;
-	}
-	
-	public void executerEffetDisparition(Object cible){
-		
-	}
-	
 
-	public void executerEffetDebutTour() {
+	public void executerEffetDebutTour() throws HearthstoneException {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
