@@ -65,7 +65,7 @@ public class main {
 				}
 				IJoueur actif = plateau.getJoueurCourant();
 				IJoueur dort = plateau.getAdversaire(actif);
-				System.out.println( "Vous avez" + actif.getStockMana() + "mana\n"+
+				System.out.println( "Vous avez " + actif.getStockMana() + " mana\n"+
 									"Vous avez "+actif.toStringmain()+" en main\n" +
 									"Vous avez "+actif.toStringjeu()+" en jeu\n" +
 									"Votre adversaire a "+dort.toStringjeu()+" en jeux\n");
@@ -111,6 +111,12 @@ public class main {
 					
 				  case 4: 
 					  		actif.pioche();
+					  		int pos = actif.getMain().size()  ;
+							try {
+								System.out.println("Vous avez pioché" + actif.getCarteMain(pos).toString());
+							} catch (HearthstoneException e) {
+								e.printStackTrace();
+							}
 					break;
 				  default:
 
