@@ -146,7 +146,7 @@ public class Joueur implements IJoueur {
 	public String toStringmain() {
 		String chaine = null;
 		int i=1;
-		for (ICarte c : this.getJeu())
+		for (ICarte c : this.getMain())
 		{
 			chaine = chaine +i+c.toString();
 			i+=1;
