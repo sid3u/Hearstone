@@ -1,7 +1,7 @@
 package IJoueur;
 
 import java.util.ArrayList;
-import java.lang.Math;
+import java.util.Random;
 
 import Exception.HearthstoneException;
 import ICarte.ICarte;
@@ -159,8 +159,10 @@ public class Joueur implements IJoueur {
 	}
 
 	public void pioche() {
-		int max = this.getDeck().size() -1;
-		int nb = (int) (Math.random() * max );
+		Random r = new Random();
+		int max = this.getDeck().size() ;
+		int nb = 0 + r.nextInt(max - 0);
+
 		ICarte pioche = this.getDeck().get(nb);
 		
 		ArrayList<ICarte> main = this.getMain();
