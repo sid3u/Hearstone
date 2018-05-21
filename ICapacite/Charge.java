@@ -42,8 +42,7 @@ public void executerAction(Object cible) throws HearthstoneException {
 }
 @Override
 public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-	// TODO Auto-generated method stub
-	
+	((Serviteur) cible).setPeutattaquer(true);	
 }
 @Override
 public void executerEffetDisparition(Object cible) throws HearthstoneException {
