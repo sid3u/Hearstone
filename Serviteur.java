@@ -1,37 +1,37 @@
 package ICarte;
 
 import Exception.HearthstoneException;
-import ICapacité.ICapacite;
-import IJoueur.Heros;
-import IJoueur.IJoueur;
-import IPlateau.IPlateau;
-import IPlateau.Plateau;
+import ICapacite.*;
+import IJoueur.*;
+
+import IPlateau.*;
+
 
 public class Serviteur extends Carte {
 	public int pointdevie;
 	int attaque;
 	boolean disparait;
 	boolean peutattaquer;
-	IJoueur adversaire = Plateau.getInstance().getAdversaire(this.proprietaire);
 	IPlateau plateau = Plateau.getInstance();
-
-	public Serviteur(String nom,int pdv, int cout,  int attaque ,ICapacite capacite,
-			IJoueur proprietaire) {
-		super(nom, cout, capacite, proprietaire);
+    IJoueur adversaire; 
+	
+	public Serviteur(String nom,int pdv, int cout,  int attaque, ICapacite capacite) {
+		super(nom, cout, capacite);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setCapacite(capacite);
 		this.setPeutattaquer(false);
 	}
-
-	public Serviteur(String nom,int pdv, int cout,  int attaque ,
-			IJoueur proprietaire) {
-		super(nom, cout, null, proprietaire); // si le serviteur n'a pas de capacité on l'a met à null
+	
+	public Serviteur(String nom,int pdv,  int attaque) { //invocation sans capacite 
+		super(nom,0,null);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
-		this.setCapacite(null);
 		this.setPeutattaquer(false);
 	}
+	
+
+	
 
 	public ICapacite getCapacite() {
 		return capacite;
@@ -118,9 +118,7 @@ public class Serviteur extends Carte {
 				+ this.getNom() + ", cout=" + this.getCout() + "]";
 	}
 
-	public IJoueur getProprietaire() {
-		return this.getProprietaire();
-	}
+
 
 	public void executerEffetDebutTour(Object cible)
 			throws HearthstoneException {
