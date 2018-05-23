@@ -20,13 +20,13 @@ public interface IJoueur {
 	ArrayList<ICarte> getJeu();
 	ICarte getCarteEnJeu(String nomCarte);
 	ICarte getCarteEnMain(String nomCarteMain);
-	void prendreTour();
-	void finirTour();
-	void pioche();
-	void jouerCarte(ICarte carte);
+	void prendreTour()throws HearthstoneException;
+	void finirTour()throws HearthstoneException;
+	void pioche() throws HearthstoneException;
+	void jouerCarte(ICarte carte)throws HearthstoneException;
 	void utiliserCarte(ICarte carte,Object cible) throws HearthstoneException;
 	void utiliserPouvoir(Object cible)throws HearthstoneException;
-	void perdreCarte(ICarte carte);
+	void perdreCarte(ICarte carte)throws HearthstoneException;
 	void ajoutercarte(ICarte carte) throws HearthstoneException;
 	public ICarte getCarteMain(int position) throws HearthstoneException;
 	public ICarte getCarteJeu(int position) throws HearthstoneException;
