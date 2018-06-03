@@ -1,14 +1,15 @@
 package IPlateau;
 
+import Exception.HearthstoneException;
 import IJoueur.IJoueur;
 
 public interface IPlateau {
-	void ajouterJoueur(IJoueur joueur);
+	void ajouterJoueur(IJoueur joueur) throws HearthstoneException;
 	IJoueur getJoueurCourant();
-	void setJoueurCourant(IJoueur joueur);
-	IJoueur getAdversaire(IJoueur joueur);
-	void demarrerPartie();
+	void setJoueurCourant(IJoueur joueur)throws HearthstoneException;
+	IJoueur getAdversaire(IJoueur joueur)throws HearthstoneException;
+	void demarrerPartie()throws HearthstoneException;
 	boolean estDemarree();
-	void finTour(IJoueur joueur);
-	void gagnerPartie(IJoueur joueur);
+	void finTour(IJoueur joueur)throws HearthstoneException;
+	void gagnerPartie(IJoueur joueur)throws HearthstoneException;
 }

@@ -1,13 +1,11 @@
 package ICarte;
 
 import Exception.HearthstoneException;
-import IJoueur.IJoueur;
 
 
 public interface ICarte {
 	String getNom();
 	int getCout();
-	IJoueur getProprietaire();
 	void executerEffetDebutTour(Object cible) throws HearthstoneException;
 	void executerEffetFinTour() throws HearthstoneException;
 	void executerAction(Object cible) throws HearthstoneException;

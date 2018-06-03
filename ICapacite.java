@@ -1,13 +1,13 @@
-package ICapacité;
+package ICapacite;
 
 import Exception.HearthstoneException;
 
 public interface ICapacite {
-	String getNom();
-	String getDescription();
-	void executerEffetDebutTour()throws HearthstoneException;
-	void executerEffetFinTour()throws HearthstoneException;
-	void executerAction(Object cible)throws HearthstoneException;
-	void executerEffetMiseEnJeu(Object cible)throws HearthstoneException;
-	void executerEffetDisparition(Object cible)throws HearthstoneException;
+	public String getNom();
+	public String getDescription();
+	public void executerEffetDebutTour()throws HearthstoneException;
+	public void executerEffetFinTour()throws HearthstoneException;
+	public void executerAction(Object cible)throws HearthstoneException;
+	public void executerEffetMiseEnJeu(Object cible)throws HearthstoneException;
+	public void executerEffetDisparition(Object cible)throws HearthstoneException;
 }

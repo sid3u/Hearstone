@@ -1,33 +1,16 @@
 package ICarte;
-import Exception.HearthstoneException;
-import ICapacité.ICapacite;
-import IJoueur.IJoueur;
 
+import Exception.HearthstoneException;
+import ICapacite.ICapacite;
 
 public class Sort extends Carte {
-	
-	public Sort(String nom, int cout,ICapacite capacite,IJoueur proprietaire) {
-		super(nom,cout,capacite,proprietaire);
-	}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public int getCout() {
-		return cout;
-	}
-
-	public void setCout(int cout) {
-		this.cout = cout;
+	public Sort(String nom, int cout, ICapacite capacite) throws HearthstoneException {
+		super(nom, cout, capacite);
 	}
 
 	public String toString() {
-		return "Sort [nom=" + nom + ", cout=" + cout + "]";
+		return "Sort [nom=" + super.getNom() + ", cout=" + super.getCout() + "]";
 	}
 
 	public boolean equals(Object obj) {
@@ -38,31 +21,23 @@ public class Sort extends Carte {
 		if (getClass() != obj.getClass())
 			return false;
 		Sort other = (Sort) obj;
-		if (cout != other.cout)
+		if (super.getCout() != other.getCout())
 			return false;
-		if (nom == null) {
-			if (other.nom != null)
+		if (super.getNom() == null) {
+			if (other.getNom() != null)
 				return false;
-		} else if (!nom.equals(other.nom))
+		} else if (!super.getNom().equals(other.getNom()))
 			return false;
 		return true;
 	}
 
-	public IJoueur getProprietaire() {
-		return proprietaire;
-	}
-
-	public void setProprietaire(IJoueur proprietaire) {
-		this.proprietaire = proprietaire;
-	}
-
-	public  void executerEffetDebutTour(Object cible) {
+	public void executerEffetDebutTour(Object cible) {
 	}
 
 	public void executerEffetFinTour() {
 	}
 
-	public void executerAction(Object cible) throws HearthstoneException{
+	public void executerAction(Object cible) throws HearthstoneException {
 		throw new HearthstoneException("Vous ne pouvez pas attaquer avec cette carte");
 	}
 

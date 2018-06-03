@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.util.Scanner;
 
@@ -17,38 +17,38 @@ public class main {
 		// Creation des capacitÃ©s
 		ICapacite crideguerre = (ICapacite) new InvocationServiteur("Cri de guerre","Invocation d'un serviteur", 1,1, "Murloc");
 		ICapacite charge = (ICapacite) new Charge("Charge", "Le serviteur n'attend pas pour attaquer");
-		ICapacite attaquemental = (ICapacite) new AttaqueDuHero("Attaque mentale","Inflige 5 points de dégat au héros", 5);
-		ICapacite bonusdehurlevent = (ICapacite) new EffetPermanent("Bonus de hurlevent","Effet permanent sur les autres serviteurs alliés donnant un bonus de 1/1",1,1);
-		ICapacite bonusduchefderaid = (ICapacite) new EffetPermanent("Bonus du chef de raid","Ajoute 1/0 au serviteur allié ",1,0);
-		ICapacite provocation = (ICapacite) new Provocation("Provocation", "Empeche d'attaquer le héro");
-		ICapacite attaquedulepreux = (ICapacite) new AttaqueDuHero("Attaque du lépreux","Inflige 2 ServiteurPoint de dégats au héros", 2);
-		ICapacite golemisation = (ICapacite) new InvocationServiteur("Golémisation","Invoque un	Golem endomagé +2/+1 qui n'a aucune	capacite",2,1,"Golem endomagé");
-		ICapacite attaquemassive = (ICapacite) new AttaqueTotal("Attaque Massive ","Inflige 4 points de dégats à tous les serviteurs adverses",4);
-		ICapacite attaquedugivre = (ICapacite) new AttaqueCible("Attaque du givre","Inflige 3 points de dégats au personnage ciblé", 3);
+		ICapacite attaquemental = (ICapacite) new AttaqueDuHero("Attaque mentale","Inflige 5 points de dï¿½gat au hï¿½ros", 5);
+		ICapacite bonusdehurlevent = (ICapacite) new EffetPermanent("Bonus de hurlevent","Effet permanent sur les autres serviteurs alliï¿½s donnant un bonus de 1/1",1,1);
+		ICapacite bonusduchefderaid = (ICapacite) new EffetPermanent("Bonus du chef de raid","Ajoute 1/0 au serviteur alliï¿½ ",1,0);
+		ICapacite provocation = (ICapacite) new Provocation("Provocation", "Empeche d'attaquer le hï¿½ro");
+		ICapacite attaquedulepreux = (ICapacite) new AttaqueDuHero("Attaque du lï¿½preux","Inflige 2 ServiteurPoint de dï¿½gats au hï¿½ros", 2);
+		ICapacite golemisation = (ICapacite) new InvocationServiteur("Golï¿½misation","Invoque un	Golem endomagï¿½ +2/+1 qui n'a aucune	capacite",2,1,"Golem endomagï¿½");
+		ICapacite attaquemassive = (ICapacite) new AttaqueTotal("Attaque Massive ","Inflige 4 points de dï¿½gats ï¿½ tous les serviteurs adverses",4);
+		ICapacite attaquedugivre = (ICapacite) new AttaqueCible("Attaque du givre","Inflige 3 points de dï¿½gats au personnage ciblï¿½", 3);
 		ICapacite intelligencedesarcanes = (ICapacite) new Piocher("Intelligence des arcanes","Pioche deux cartes",2);
 	//	ICapacite imagemirroir = (ICapacite) new ImageMiroir("Image miroir","Invoque deux serviteurs de Jaina ayant 0/2 et provocation");
-		ICapacite explosionpyrotechnique = (ICapacite) new AttaqueCible("Explosion pyrotechnique","Inflige de 10 points de dégats au personnage ciblé",10);
-		ICapacite busardaffame = (ICapacite) new Piocher("Busard affamé", " Pioche une carte",1);
-		ICapacite marqueduchasseur = (ICapacite) new MarqueduChasseur("Marque du chasseur", "Abaisse à 1 les points de vie du seviteur ciblé");
-		ICapacite tirdesarcanes = (ICapacite) new AttaqueCible("Tir des arcanes","Inflige deux points de gédats au personnage",2);
+		ICapacite explosionpyrotechnique = (ICapacite) new AttaqueCible("Explosion pyrotechnique","Inflige de 10 points de dï¿½gats au personnage ciblï¿½",10);
+		ICapacite busardaffame = (ICapacite) new Piocher("Busard affamï¿½", " Pioche une carte",1);
+		ICapacite marqueduchasseur = (ICapacite) new MarqueduChasseur("Marque du chasseur", "Abaisse ï¿½ 1 les points de vie du seviteur ciblï¿½");
+		ICapacite tirdesarcanes = (ICapacite) new AttaqueCible("Tir des arcanes","Inflige deux points de gï¿½dats au personnage",2);
 		//ICapacite lachezleschiens = (ICapacite) new InvocationChiens("Invocations des chiens", "Invoque des wouaf wouaf");
-		ICapacite ordredetuer = (ICapacite) new AttaqueCible("Ordre de tuer","Inflige 3 points de dégars au personnage ciblé",3);
-		ICapacite bouledefeu = (ICapacite) new AttaqueCible("Boule de feu", " Inflige 1 point de dégat au personnage ciblé", 1);
+		ICapacite ordredetuer = (ICapacite) new AttaqueCible("Ordre de tuer","Inflige 3 points de dï¿½gars au personnage ciblï¿½",3);
+		ICapacite bouledefeu = (ICapacite) new AttaqueCible("Boule de feu", " Inflige 1 point de dï¿½gat au personnage ciblï¿½", 1);
 		ICapacite rex = (ICapacite) new AttaqueTotal("Cri de guerre","tous les serviteurs prennent cher",2);
 		
 		// Creation des cartes neutre
 		
 
-	    ICarte Chassemareemurloc = new Serviteur("Chasse-marée murloc",1,2,2, crideguerre);
+	    ICarte Chassemareemurloc = new Serviteur("Chasse-marï¿½e murloc",1,2,2, crideguerre);
 	    ICarte Charge = new Sort("charge",1,charge);
 	    ICarte Attaquementale = new Sort("Attaque mentale", 2, attaquemental);
 	    ICarte Championdehurlevent = new Serviteur("Champion de Hurlevent",6,7,6, bonusdehurlevent);
 	    ICarte Chefderaid = new Serviteur("Chef de raid", 2,3,2, bonusduchefderaid);
 	    ICarte Gardedebaiedubutin = new Serviteur("Garde de Baie-Du-Butin", 4, 5,5, provocation);
-	    ICarte Lamissillieretemeraire = new Serviteur("La missilière téméraire", 2,6,5, charge);
+	    ICarte Lamissillieretemeraire = new Serviteur("La missiliï¿½re tï¿½mï¿½raire", 2,6,5, charge);
 	    ICarte Logremagi = new Serviteur("L'ogre-magi",4,4,4,provocation);
 	    ICarte Archimage = new Serviteur("Archimage",7,6,4,provocation);
-	    ICarte Gnomelepreux = new Serviteur("Gnome lépreux", 1,1,1, attaquedulepreux);
+	    ICarte Gnomelepreux = new Serviteur("Gnome lï¿½preux", 1,1,1, attaquedulepreux);
 	    ICarte Golemdesmoissons = new Serviteur("Golem des moissons", 3,3,2, golemisation);
 	    
 	    // Creations des cartes de Jaina 
@@ -61,10 +61,10 @@ public class main {
 	   
 	    //Creation des cartes de Rexxar
 	    
-	    ICarte Busardaffame = new Serviteur("Busard affamé",2,5,3, busardaffame);
+	    ICarte Busardaffame = new Serviteur("Busard affamï¿½",2,5,3, busardaffame);
 	    ICarte Marqueduchasseur = new Sort("Marque du chasseur", 1, marqueduchasseur);
 	    ICarte Tirdesarcanes = new Sort("Tir des arcanes", 1, tirdesarcanes);
-	 //   ICarte Lachezleschiens = new Sort("Lâchez les chiens", 3, lachezleschiens);
+	 //   ICarte Lachezleschiens = new Sort("Lï¿½chez les chiens", 3, lachezleschiens);
 	    ICarte Ordredetuer = new Sort("Ordre de tuer", 3, ordredetuer);
 	    
 		
@@ -128,16 +128,26 @@ public class main {
 
 		// On commence la partie
 		plateau.demarrerPartie();
-
-		for (int i = 0; i <= 10; i++) {
-			for (int j = 0; j <= 1; j++) {
-				if (j == 0) {
+		
+		int pdvjoueur1 = plateau.getJoueur1().getHeros().getPointdevie();
+		int pdvjoueur2 = plateau.getJoueur2().getHeros().getPointdevie();
+		int i = 0;
+		
+			 while ((pdvjoueur1 >=  0) && (pdvjoueur2 >=0)){
+				if (i %2 == 0) {
 					plateau.setJoueurCourant(joueur1);
 				} else {
 					plateau.setJoueurCourant(joueur2);
 				}
+				
 				IJoueur actif = plateau.getJoueurCourant();
 				IJoueur dort = plateau.getAdversaire(actif);
+				
+				actif.pioche();
+				int pos = actif.getMain().size();
+				System.out.println("Vous avez piochÃ©"
+						+ actif.getCarteMain(pos).toString());
+				
 				System.out.println("Vous avez " + actif.getStockMana()
 						+ " mana\n" + "Vous avez " + actif.toStringmain()
 						+ " en main\n" + "Vous avez " + actif.toStringjeu()
@@ -146,7 +156,11 @@ public class main {
 				actif.prendreTour();
 				Scanner sc = new Scanner(System.in);
 				int k = sc.nextInt();
-
+				/*
+				System.out.println("1.Voulez vous attaquer? \n"
+						+ "2.Voulez vous utiliser la capacitÃ© spÃ©ciale de votre heros? \n" + "3.Voulez vous jouer une carte?\n"
+						+ "4.Voulez vous piocher?\n" + "5.Voulez vous passer votre tour?\n");
+ */
 				switch (k) {
 				case 1:
 					System.out
@@ -169,7 +183,7 @@ public class main {
 
 					break;
 
-				case 3:
+				case 2:
 					System.out.println("Quelle carte voulez vous jouer?"
 							+ actif.toStringmain());
 					Scanner cartejouer = new Scanner(System.in);
@@ -183,23 +197,26 @@ public class main {
 						e.printStackTrace();
 					}
 					break;
-
-				case 4:
-					actif.pioche();
-					int pos = actif.getMain().size();
-					try {
-						System.out.println("Vous avez piochÃ©"
-								+ actif.getCarteMain(pos).toString());
-					} catch (HearthstoneException e) {
-						e.printStackTrace();
-					}
-					break;
+					
+					
+					
 				default:
 
-					;
 
 				}
 
+			}
+			if ((pdvjoueur1 == 0) && (pdvjoueur2 == 0))
+			{
+				plateau.gagnerPartie(joueur2);
+				plateau.gagnerPartie(joueur1);
+			}
+			else if (pdvjoueur1 == 0){
+				plateau.gagnerPartie(joueur2);
+			}
+			else
+			{
+				plateau.gagnerPartie(joueur1);
 			}
 		}
 

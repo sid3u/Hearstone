@@ -1,15 +1,14 @@
 package ICapacite;
 
 import Exception.HearthstoneException;
-import ICarte.*;
-import IJoueur.*;
+import IJoueur.Heros;
 
-public class AttaqueCible extends Capacite implements ICapacite {
+public class AttaqueDuHero extends Capacite implements ICapacite {
 
 	private int att;
 
-	public AttaqueCible(String nom, String description, int att) {
-		super(nom,description);
+	public AttaqueDuHero(String nom, String description, int att) {
+		super(nom, description);
 		setAtt(att);
 	}
 
@@ -29,6 +28,7 @@ public class AttaqueCible extends Capacite implements ICapacite {
 		this.description = description;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -37,7 +37,7 @@ public class AttaqueCible extends Capacite implements ICapacite {
 		if (getClass() != obj.getClass())
 			return false;
 		AttaqueDuHero other = (AttaqueDuHero) obj;
-		if (att != other.getAtt())
+		if (att != other.att)
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -52,48 +52,35 @@ public class AttaqueCible extends Capacite implements ICapacite {
 		return true;
 	}
 
+	@Override
 	public String toString() {
 		return "AttaqueDuHero [nom=" + nom + ", description=" + description + ", att=" + att + "]";
 	}
-	
+
+	@Override
 	public void executerEffetDebutTour() throws HearthstoneException {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void executerEffetFinTour() throws HearthstoneException {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
-
-		if (((Serviteur) cible).getCapacite().getNom().equals("Provocation")) {
-			((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAtt());
-		} else {
-			for (ICarte c : ((Serviteur) cible).getAdversaire().getJeu()) {
-				if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().equals("Provocation"))) {
-					throw new HearthstoneException(
-							"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");
-				} else if ((((Serviteur) c).getCapacite().equals("Provocation")) && (cible instanceof Heros)) {
-					throw new HearthstoneException(
-							"Vous essayez d'attaquer un heros alors que" + c.getNom() + " a provocation");
-				}
-			}
-			if (cible instanceof Serviteur)
-				((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAtt());
-			else
-
-				((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - this.getAtt());
-		}
-
+		((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - getAtt());
 	}
 
+	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 		// TODO Auto-generated method stub
 
