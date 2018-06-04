@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 import IPlateau.Plateau;
 
 public class ImageMiroir extends Capacite implements ICapacite {
 	private Serviteur serviteur;
 
-	public ImageMiroir(String nom, String description) throws HearthstoneException {
+	public ImageMiroir(String nom, String description, IJoueur proprietaire) throws HearthstoneException {
 		super(nom, description);
 		ICapacite charge = new Charge();
-		serviteur = new Serviteur("Serviteur mirroir", 2, 0, 0, charge, null);
+		serviteur = new Serviteur("Serviteur mirroir", "", 2, 0, 0, charge, proprietaire);
 	}
 
 	public void executerEffetDebutTour() throws HearthstoneException {

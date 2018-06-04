@@ -17,6 +17,5 @@ public interface IPlateau {
 	void finTour(IJoueur joueur)throws HearthstoneException;
 	void gagnerPartie(IJoueur joueur)throws HearthstoneException;
 	public ArrayList<IJoueur> getJoueurs();
-	public void estPresent(Heros h) throws HearthstoneException;
-	public void cartesDisparaissent();
+	public void cartesDisparaissent() throws HearthstoneException;
 }

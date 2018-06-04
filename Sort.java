@@ -6,12 +6,12 @@ import IJoueur.IJoueur;
 
 public class Sort extends Carte implements ICarte {
 
-	public Sort(String nom, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
-		super(nom, cout, capacite,proprietaire);
+	public Sort(String nom,String description, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
+		super(nom,description, cout, capacite,proprietaire);
 	}
 
 	public String toString() {
-		return "Sort [nom=" + super.getNom() + ", cout=" + super.getCout() + "]";
+		return "Sort [ nom = " + super.getNom() + ", cout = " + super.getCout() +" description = "+ super.getDescription() +" ]";
 	}
 
 	public boolean equals(Object obj) {

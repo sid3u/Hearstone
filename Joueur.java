@@ -101,15 +101,7 @@ public class Joueur implements IJoueur {
 		this.deck = deck;
 	}
 
-	public String toStringjeu() {
-		String chaine = null;
-		int i = 1;
-		for (ICarte c : this.getJeu()) {
-			chaine = chaine + i + c.toString();
-			i += 1;
-		}
-		return chaine;
-	}
+
 
 	public boolean containsmain(String nomcarte) {
 		for (ICarte c : this.getMain()) {
@@ -127,13 +119,25 @@ public class Joueur implements IJoueur {
 		return false;
 	}
 
-	public String toStringmain() {
-		String chaine = null;
+	public String toStringjeu() {
+		String chaine = "";
 		int i = 1;
-		for (ICarte c : this.getMain()) {
-			chaine = chaine + i + c.toString();
+		for (ICarte c : this.getJeu()) {
+			chaine = chaine + i+"- " + c.toString()+"\n";
 			i += 1;
 		}
+		if (i == 1) return ("rien");
+		return chaine;
+	}
+	
+	public String toStringmain() {
+		String chaine = "";
+		int i = 1;
+		for (ICarte c : this.getMain()) {
+			chaine = chaine + i +"- "+ c.toString()+"\n";
+			i += 1;
+		}
+		if (i == 1) return ("rien");
 		return chaine;
 	}
 
@@ -265,7 +269,8 @@ public class Joueur implements IJoueur {
 		heros.setUtiliserpouvoir(true);
 	}
 
-	public void perdreCarte(ICarte carte) {
+	public void perdreCarte(ICarte carte) throws HearthstoneException{
+		if (getJeu().size() == 0) throw new HearthstoneException("Vous n'avez aucune carte à faire disparaitre");
 		if (carte.disparait() == true)
 			jeu.remove(carte);
 	}

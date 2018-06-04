@@ -8,18 +8,28 @@ import IPlateau.Plateau;
 
 public abstract class Carte implements ICarte {
 	private String nom;
+	private String description;
 	private int cout;
 	private ICapacite capacite;
 	IJoueur proprietaire;
 	IJoueur adversaire;
 	private IPlateau plateau = Plateau.getInstance();
 
-	public Carte(String nom, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
+	public Carte(String nom,String description, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
 		this.setNom(nom);
 		this.setCout(cout);
 		this.setCapacite(capacite);
 		this.setProprietaire(proprietaire);
 		this.setAdversaire(proprietaire);
+		this.setDescription(description);
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getNom() {
@@ -71,6 +81,12 @@ public abstract class Carte implements ICarte {
 		this.proprietaire=proprietaire;
 	}
 	
+	@Override
+	public String toString() {
+		return "Carte [ nom = " + nom + ", description = " + description + ", cout = " + cout + ", capacite = " + capacite
+				+ ", proprietaire = " + proprietaire + ", adversaire = " + adversaire + ", plateau = " + plateau + " ]";
+	}
+
 	public IPlateau getPlateau() {
 		return plateau;
 	}
@@ -92,8 +108,5 @@ public abstract class Carte implements ICarte {
 
 	public abstract boolean disparait();
 
-	@Override
-	public String toString() {
-		return nom;
-	}
+	
 }

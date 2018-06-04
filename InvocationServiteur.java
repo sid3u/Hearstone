@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 import IPlateau.Plateau;
 
@@ -13,12 +14,12 @@ public class InvocationServiteur extends Capacite implements ICapacite {
 	private Serviteur muray;
 	String nominvoc;
 
-	public InvocationServiteur(String nom, String description, int pdv, int att, String nominvoc)
+	public InvocationServiteur(String nom, String description, int pdv, int att, String nominvoc,IJoueur proprietaire)
 			throws HearthstoneException {
 		super(nom, description);
 		setPdv(pdv);
 		setAtt(att);
-		muray = new Serviteur(nominvoc, pdv, 0, att,null);
+		muray = new Serviteur(nominvoc,"", pdv, 0, att,proprietaire);
 		
 	}
 

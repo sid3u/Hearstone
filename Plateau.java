@@ -131,31 +131,14 @@ public class Plateau implements IPlateau {
 		setPartie(false);
 	}
 
-	public void estPresent(Heros h) throws HearthstoneException {
-		for (IJoueur j : getJoueurs()) {
-			if (j.getHeros() == h)
-				throw new HearthstoneException("Heros déja présent, il faut en prendre un autre");
-		}
-	}
-
-	public void cartesDisparaissent() {
+	public void cartesDisparaissent() throws HearthstoneException {
 		for (IJoueur j : getJoueurs()) {
 			for (ICarte c : j.getJeu()) {
-				if (((Serviteur) c).getPointdevie() <= 0)
-					((Serviteur)c).setDisparait(true);
+				if (((Serviteur) c).disparait())
+				{
+					j.perdreCarte(c);
+				}
 			}
-		}
-	}
-	
-	public void disparitionMorts()
-	{
-		for (IJoueur j : getJoueurs()) {
-			ArrayList<ICarte> nouveaujeu = j.getJeu();
-			for (ICarte c : nouveaujeu) {
-				if (((Serviteur) c).isDisparait() == true)
-					nouveaujeu.remove(j.getPositionJeu(c));
-			}
-			j.setJeu(nouveaujeu);
 		}
 	}
 	

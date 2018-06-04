@@ -5,6 +5,7 @@ package ICapacite;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 import IPlateau.*;
 
@@ -12,10 +13,10 @@ import IPlateau.*;
 		
 		private Serviteur chien;
 		
-		public InvocationChiens(String nom, String description) throws HearthstoneException {
+		public InvocationChiens(String nom, String description,IJoueur proprietaire) throws HearthstoneException {
 			super (nom,description);
 			@SuppressWarnings("unused")
-			Serviteur chien = new Serviteur("Chiens",1,0,1,null);
+			Serviteur chien = new Serviteur("Chiens","",1,0,1,proprietaire);
 		
 		}
 

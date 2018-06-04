@@ -10,9 +10,9 @@ public class Serviteur extends Carte implements ICarte {
 	private boolean disparait;
 	private boolean peutattaquer;
 
-	public Serviteur(String nom, int pdv, int cout, int attaque, ICapacite capacite, IJoueur proprietaire)
+	public Serviteur(String nom,String description, int pdv, int cout, int attaque, ICapacite capacite, IJoueur proprietaire)
 			throws HearthstoneException {
-		super(nom, cout, capacite, proprietaire);
+		super(nom,description, cout, capacite, proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setCapacite(capacite);
@@ -20,10 +20,8 @@ public class Serviteur extends Carte implements ICarte {
 		this.setDisparait(false);
 	}
 
-	public Serviteur(String nom, int pdv, int cout, int attaque, IJoueur proprietaire) throws HearthstoneException { // invocation
-																														// sans
-																														// capacite
-		super(nom, 0, null, proprietaire);
+	public Serviteur(String nom,String description, int pdv, int cout, int attaque, IJoueur proprietaire) throws HearthstoneException { // invocation																										// capacite
+		super(nom,description, 0, null, proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setPeutattaquer(false);
@@ -87,8 +85,8 @@ public class Serviteur extends Carte implements ICarte {
 	}
 
 	public String toString() {
-		return "Serviteur [pointdevie=" + this.getPointdevie() + ", nom=" + this.getNom() + ", cout=" + this.getCout()
-				+ "]";
+		return "Serviteur [ pointdevie = " + this.getPointdevie() + ", nom = " + this.getNom() + ", cout = " + this.getCout()
+				+ " ]";
 	}
 
 	public void executerEffetDebutTour(Object cible) throws HearthstoneException {
@@ -143,7 +141,7 @@ public class Serviteur extends Carte implements ICarte {
 	}
 
 	public boolean disparait() {
-		if (this.getPointdevie() == 0) {
+		if (this.getPointdevie() <= 0) {
 			return true;
 		} else {
 			return false;
