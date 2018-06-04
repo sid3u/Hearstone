@@ -7,7 +7,7 @@ public class AttaqueDuHero extends Capacite implements ICapacite {
 
 	private int att;
 
-	public AttaqueDuHero(String nom, String description, int att) {
+	public AttaqueDuHero(String nom, String description, int att) throws HearthstoneException {
 		super(nom, description);
 		setAtt(att);
 	}
@@ -16,7 +16,9 @@ public class AttaqueDuHero extends Capacite implements ICapacite {
 		return att;
 	}
 
-	public void setAtt(int att) {
+	
+	public void setAtt(int att) throws HearthstoneException{
+		if (att <= 0 ) throw new HearthstoneException("attaque négative ou nul");
 		this.att = att;
 	}
 

@@ -8,7 +8,7 @@ public class EffetPermanent extends Capacite implements ICapacite {
 	private int batt;
 	private int bdef;
 
-	public EffetPermanent(String nom, String description, int batt, int bdef) {
+	public EffetPermanent(String nom, String description, int batt, int bdef) throws HearthstoneException {
 		super(nom,description);
 		setBatt(batt);
 		setBdef(bdef);
@@ -18,7 +18,8 @@ public class EffetPermanent extends Capacite implements ICapacite {
 		return batt;
 	}
 
-	public void setBatt(int batt) {
+	public void setBatt(int batt) throws HearthstoneException{
+		if (batt < 0 ) throw new HearthstoneException("attaque négative ou nul");
 		this.batt = batt;
 	}
 
@@ -26,7 +27,8 @@ public class EffetPermanent extends Capacite implements ICapacite {
 		return bdef;
 	}
 
-	public void setBdef(int bdef) {
+	public void setBdef(int bdef) throws HearthstoneException{
+		if (bdef< 0 ) throw new HearthstoneException("défense négative ou nul");
 		this.bdef = bdef;
 	}
 
