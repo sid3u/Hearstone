@@ -19,7 +19,6 @@ public class Joueur implements IJoueur {
 	private ArrayList<ICarte> main;
 	private ArrayList<ICarte> jeu;
 	private ArrayList<ICarte> deck;
-	public final static int TAILLE_DECK = 15, MAX_MANA = 10;
 
 	public Joueur(Heros h, String p) throws HearthstoneException {
 		setHeros(h);
@@ -48,9 +47,10 @@ public class Joueur implements IJoueur {
 	public void setPseudo(String pseudo) throws HearthstoneException {
 		if (pseudo == null)
 			throw new HearthstoneException("Pseudo null");
-		if (pseudo.trim().isEmpty())
+		else if (pseudo.trim().isEmpty())
 			throw new HearthstoneException("Nom non viable");
-		this.pseudo = pseudo;
+		else
+			this.pseudo = pseudo;
 	}
 
 	public int getStockMana() {
@@ -110,20 +110,19 @@ public class Joueur implements IJoueur {
 		}
 		return chaine;
 	}
-	
-	public boolean containsmain(String nomcarte)
-	{
-		for (ICarte c : this.getMain())
-		{
-			if (c.getNom().equals(nomcarte)) return true;
+
+	public boolean containsmain(String nomcarte) {
+		for (ICarte c : this.getMain()) {
+			if (c.getNom().equals(nomcarte))
+				return true;
 		}
 		return false;
 	}
-	
+
 	public boolean containsjeu(String nomcarte) {
-		for (ICarte c : this.getJeu())
-		{
-			if (c.getNom().equals(nomcarte)) return true;
+		for (ICarte c : this.getJeu()) {
+			if (c.getNom().equals(nomcarte))
+				return true;
 		}
 		return false;
 	}
@@ -236,31 +235,33 @@ public class Joueur implements IJoueur {
 		this.setDeck(deck);
 	}
 
-	public void jouerCarte(ICarte carte) {
-		ArrayList<ICarte> jeu = this.getJeu();
-		jeu.add(carte);
-		this.setJeu(jeu);
+	public void jouerCarte(ICarte carte) throws HearthstoneException {
+		if ((this.getStockMana() - carte.getCout() < 0))
+			throw new HearthstoneException("Vous n'avez pas assez de mana pour executer cette action");
+		if (this.getStockMana() - carte.getCout() >= 0) {
+			this.setStockmana(this.getStockMana() - carte.getCout());
+			ArrayList<ICarte> jeu = this.getJeu();
+			jeu.add(carte);
+			this.setJeu(jeu);
 
-		ArrayList<ICarte> main = this.getMain();
-		main.remove(carte);
-		this.setMain(main);
+			ArrayList<ICarte> main = this.getMain();
+			main.remove(carte);
+			this.setMain(main);
+		}
 	}
 
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
 		if ((cible instanceof Heros) || (cible instanceof Serviteur) && (carte.getCout() <= this.getStockMana())) {
 			carte.executerAction(cible);
-			this.setStockmana(this.getStockMana() - carte.getCout());
 		} else if (cible instanceof Sort) {
 			throw new HearthstoneException("Vous ne pouvez pas attaquer un sort");
-		} else {
-			throw new HearthstoneException("Vous ne disposez pas d'assez de mana");
 		}
 	}
 
 	public void utiliserPouvoir(Object cible) throws HearthstoneException {
 		if (heros.isUtiliserpouvoir() == true)
 			throw new HearthstoneException("Vous avez déjà utilisé son pouvoir ce tour");
-		heros.getPouvoir().executerAction(cible);
+		heros.getPouvoir().executerEffetMiseEnJeu(cible);
 		heros.setUtiliserpouvoir(true);
 	}
 
@@ -277,6 +278,17 @@ public class Joueur implements IJoueur {
 			deck.add(carte);
 			this.setDeck(deck);
 		}
+	}
+	
+	public int getPositionJeu (ICarte cherche)
+	{
+		int i = 0;
+		for (ICarte c : this.getJeu())
+		{
+			if (c.equals(cherche)) return i;
+			i++;
+		}
+		return 20;
 	}
 
 }

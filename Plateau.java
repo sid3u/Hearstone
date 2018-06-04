@@ -3,6 +3,9 @@ package IPlateau;
 import java.util.ArrayList;
 
 import Exception.HearthstoneException;
+import ICarte.ICarte;
+import ICarte.Serviteur;
+import IJoueur.Heros;
 import IJoueur.IJoueur;
 
 public class Plateau implements IPlateau {
@@ -10,15 +13,45 @@ public class Plateau implements IPlateau {
 	private ArrayList<IJoueur> joueurs;
 	private boolean partie;
 	private IJoueur joueurCourant;
+	boolean jayna;
+	boolean rexxar;
 
 	private Plateau() throws HearthstoneException {
 		setPartie(false);
 		joueurs = new ArrayList<IJoueur>();
 		joueurCourant = null;
+		setJayna(false);
+		setRexxar(false);
 	}
 
-	public void setPartie(boolean partie) throws HearthstoneException{
-		if (estDemarree() == true) throw new HearthstoneException("Partie déja lancé");
+	public String toString() {
+		return "Plateau [joueurs=" + joueurs + ", partie=" + partie + ", joueurCourant=" + joueurCourant + ", jayna="
+				+ jayna + ", rexxar=" + rexxar + "]";
+	}
+
+	public boolean isJayna() {
+		return jayna;
+	}
+
+	public void setJayna(boolean jayna) {
+		this.jayna = jayna;
+	}
+
+	public boolean isRexxar() {
+		return rexxar;
+	}
+
+	public void setRexxar(boolean rexxar) {
+		this.rexxar = rexxar;
+	}
+
+	public boolean isPartie() {
+		return partie;
+	}
+
+	public void setPartie(boolean partie) throws HearthstoneException {
+		if (estDemarree() == true)
+			throw new HearthstoneException("Partie déja lancé");
 		this.partie = partie;
 	}
 
@@ -97,4 +130,33 @@ public class Plateau implements IPlateau {
 			throw new HearthstoneException("Vous trichez, vous n'avez pas gagné, retournez au combat");
 		setPartie(false);
 	}
+
+	public void estPresent(Heros h) throws HearthstoneException {
+		for (IJoueur j : getJoueurs()) {
+			if (j.getHeros() == h)
+				throw new HearthstoneException("Heros déja présent, il faut en prendre un autre");
+		}
+	}
+
+	public void cartesDisparaissent() {
+		for (IJoueur j : getJoueurs()) {
+			for (ICarte c : j.getJeu()) {
+				if (((Serviteur) c).getPointdevie() <= 0)
+					((Serviteur)c).setDisparait(true);
+			}
+		}
+	}
+	
+	public void disparitionMorts()
+	{
+		for (IJoueur j : getJoueurs()) {
+			ArrayList<ICarte> nouveaujeu = j.getJeu();
+			for (ICarte c : nouveaujeu) {
+				if (((Serviteur) c).isDisparait() == true)
+					nouveaujeu.remove(j.getPositionJeu(c));
+			}
+			j.setJeu(nouveaujeu);
+		}
+	}
+	
 }

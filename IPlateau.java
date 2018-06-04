@@ -3,6 +3,8 @@ package IPlateau;
 import java.util.ArrayList;
 
 import Exception.HearthstoneException;
+import ICarte.ICarte;
+import IJoueur.Heros;
 import IJoueur.IJoueur;
 
 public interface IPlateau {
@@ -15,4 +17,6 @@ public interface IPlateau {
 	void finTour(IJoueur joueur)throws HearthstoneException;
 	void gagnerPartie(IJoueur joueur)throws HearthstoneException;
 	public ArrayList<IJoueur> getJoueurs();
+	public void estPresent(Heros h) throws HearthstoneException;
+	public void cartesDisparaissent();
 }

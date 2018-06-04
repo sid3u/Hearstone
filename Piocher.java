@@ -7,7 +7,7 @@ public class Piocher extends Capacite implements ICapacite {
 
 	private int nombre;
 
-	public Piocher(String nom, String description, int nombre) throws HearthstoneException {
+	public Piocher(String nom, String description, int nombre) {
 		super(nom,description);
 		setNombre(nombre);
 	}
@@ -16,8 +16,7 @@ public class Piocher extends Capacite implements ICapacite {
 		return nombre;
 	}
 
-	public void setNombre(int nombre) throws HearthstoneException {
-		if(nombre<= 0) throw new HearthstoneException("Piocher un nombre de carte positif!");
+	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
 

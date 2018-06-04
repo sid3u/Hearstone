@@ -17,6 +17,7 @@ public class Serviteur extends Carte implements ICarte {
 		this.setAttaque(attaque);
 		this.setCapacite(capacite);
 		this.setPeutattaquer(false);
+		this.setDisparait(false);
 	}
 
 	public Serviteur(String nom, int pdv, int cout, int attaque, IJoueur proprietaire) throws HearthstoneException { // invocation
@@ -26,6 +27,7 @@ public class Serviteur extends Carte implements ICarte {
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setPeutattaquer(false);
+		this.setDisparait(false);
 	}
 
 	public boolean isPeutattaquer() {

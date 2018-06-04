@@ -9,7 +9,7 @@ public class AttaqueCible extends Capacite implements ICapacite {
 
 	private int att;
 
-	public AttaqueCible(String nom, String description, int att) throws HearthstoneException {
+	public AttaqueCible(String nom, String description, int att) {
 		super(nom,description);
 		setAtt(att);
 	}
@@ -18,8 +18,7 @@ public class AttaqueCible extends Capacite implements ICapacite {
 		return att;
 	}
 
-	public void setAtt(int att) throws HearthstoneException{
-		if (att <= 0 ) throw new HearthstoneException("attaque négative ou nul");
+	public void setAtt(int att) {
 		this.att = att;
 	}
 	
@@ -65,7 +64,7 @@ public class AttaqueCible extends Capacite implements ICapacite {
 	}
 	
 	public void parcoursProvocation(Object cible) throws HearthstoneException {
-		for (ICarte c : ((ICarte)cible).getAdversaire(((Serviteur)cible).getProprietaire()).getJeu()) {
+		for (ICarte c : ((ICarte)cible).getAdversaire().getJeu()) {
 			if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
 				throw new HearthstoneException(
 						"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");

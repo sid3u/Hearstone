@@ -57,7 +57,6 @@ public abstract class Carte implements ICarte {
 	}
 	
 	public void setAdversaire(IJoueur prop) throws HearthstoneException{
-		if (prop == null) throw new HearthstoneException("Adversaire null");
 		for (IJoueur j : plateau.getJoueurs())
 			if (j != prop) this.adversaire = j;
 	}
@@ -68,7 +67,7 @@ public abstract class Carte implements ICarte {
 	
 	public void setProprietaire(IJoueur proprietaire)throws HearthstoneException
 	{
-		if (proprietaire == null) throw new HearthstoneException("Proprietaire null");
+
 		this.proprietaire=proprietaire;
 	}
 	
