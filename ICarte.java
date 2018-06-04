@@ -14,6 +14,6 @@ public interface ICarte {
 	void executerEffetDisparition(Object cible)throws HearthstoneException;
 	boolean disparait();
 	public String toString();
-	public IJoueur getAdversaire(IJoueur joueur);
+	public IJoueur getAdversaire();
 	public IJoueur getProprietaire();
 }

@@ -53,9 +53,4 @@ public class Sort extends Carte implements ICarte {
 		return true;
 	}
 
-	@Override
-	public IJoueur getAdversaire(IJoueur joueur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

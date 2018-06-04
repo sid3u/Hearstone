@@ -110,6 +110,23 @@ public class Joueur implements IJoueur {
 		}
 		return chaine;
 	}
+	
+	public boolean containsmain(String nomcarte)
+	{
+		for (ICarte c : this.getMain())
+		{
+			if (c.getNom().equals(nomcarte)) return true;
+		}
+		return false;
+	}
+	
+	public boolean containsjeu(String nomcarte) {
+		for (ICarte c : this.getJeu())
+		{
+			if (c.getNom().equals(nomcarte)) return true;
+		}
+		return false;
+	}
 
 	public String toStringmain() {
 		String chaine = null;
@@ -135,13 +152,13 @@ public class Joueur implements IJoueur {
 		return this.getMain().get(position - 1);
 	}
 
-	public ICarte getCarteEnJeu(String nomCarte) {
+	public ICarte getCarteEnJeu(String nomcarte) {
 
-		if (jeu.contains(nomCarte)) {
+		if (containsjeu(nomcarte)) {
 			int i = 0;
 			{
 				for (ICarte c : jeu) {
-					if (c.getNom() == nomCarte) {
+					if (c.getNom().equals(nomcarte)) {
 						return jeu.get(i);
 					} else
 						i++;
@@ -154,7 +171,7 @@ public class Joueur implements IJoueur {
 
 	public ICarte getCarteEnMain(String nomCarteMain) {
 
-		if (main.contains(nomCarteMain)) {
+		if (containsmain(nomCarteMain)) {
 			int i = 0;
 			{
 				for (ICarte c : main) {

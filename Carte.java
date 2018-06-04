@@ -52,8 +52,7 @@ public abstract class Carte implements ICarte {
 		this.capacite = capacite;
 	}
 	
-	public IJoueur getAdversaire()
-	{
+	public IJoueur getAdversaire() {
 		return this.adversaire;
 	}
 	

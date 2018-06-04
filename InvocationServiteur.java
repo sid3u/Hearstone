@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import Exception.HearthstoneException;
 import ICarte.*;
-import IJoueur.IJoueur;
 import IJoueur.Joueur;
+import IPlateau.Plateau;
 
 public class InvocationServiteur extends Capacite implements ICapacite {
 	private int att;
@@ -13,12 +13,13 @@ public class InvocationServiteur extends Capacite implements ICapacite {
 	private Serviteur muray;
 	String nominvoc;
 
-	public InvocationServiteur(String nom, String description, int pdv, int att, String nominvoc, IJoueur prop)
+	public InvocationServiteur(String nom, String description, int pdv, int att, String nominvoc)
 			throws HearthstoneException {
 		super(nom, description);
 		setPdv(pdv);
 		setAtt(att);
-		muray = new Serviteur(nominvoc, pdv, 0, att, prop);
+		muray = new Serviteur(nominvoc, pdv, 0, att,null);
+		
 	}
 
 	public int getPdv() {
@@ -78,6 +79,7 @@ public class InvocationServiteur extends Capacite implements ICapacite {
 	}
 
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+		this.muray.setProprietaire(Plateau.getInstance().getJoueurCourant());
 		ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
 		liste.add(((ICarte) muray));
 		((Joueur) cible).setJeu(liste);

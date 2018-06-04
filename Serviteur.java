@@ -10,16 +10,19 @@ public class Serviteur extends Carte implements ICarte {
 	private boolean disparait;
 	private boolean peutattaquer;
 
-	public Serviteur(String nom, int pdv, int cout, int attaque, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
-		super(nom, cout, capacite,proprietaire);
+	public Serviteur(String nom, int pdv, int cout, int attaque, ICapacite capacite, IJoueur proprietaire)
+			throws HearthstoneException {
+		super(nom, cout, capacite, proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setCapacite(capacite);
 		this.setPeutattaquer(false);
 	}
 
-	public Serviteur(String nom, int pdv,int cout, int attaque,IJoueur proprietaire) throws HearthstoneException { // invocation sans capacite
-		super(nom, 0, null,proprietaire);
+	public Serviteur(String nom, int pdv, int cout, int attaque, IJoueur proprietaire) throws HearthstoneException { // invocation
+																														// sans
+																														// capacite
+		super(nom, 0, null, proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setPeutattaquer(false);
@@ -55,8 +58,9 @@ public class Serviteur extends Carte implements ICarte {
 		return attaque;
 	}
 
-	public void setAttaque(int attaque) throws HearthstoneException{
-		if (attaque < 0) throw new HearthstoneException("Une attaque ne peut être négative");
+	public void setAttaque(int attaque) throws HearthstoneException {
+		if (attaque < 0)
+			throw new HearthstoneException("Une attaque ne peut être négative");
 		this.attaque = attaque;
 	}
 
@@ -97,30 +101,35 @@ public class Serviteur extends Carte implements ICarte {
 		if ((this.getCapacite().getNom().equals("Charge")) && (this.isPeutattaquer() == false)) {
 			this.setPeutattaquer(true);
 		}
-		if ((cible instanceof Serviteur) || (cible instanceof Heros) && (this.isPeutattaquer() == true)) {
-			if (((Serviteur) cible).getCapacite().getNom().equals("Provocation")) {
-				((Serviteur) cible).setPointdevie(this.getPointdevie() - this.getAttaque());
-			} else {
-				parcoursProvocation(cible);
-			}
-			if (cible instanceof Serviteur) {
-				((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAttaque());
-			} else {
-				((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - this.getAttaque());
-			}
+		if (cible instanceof Serviteur) {
+			attaqueServiteur(cible);
+		} else if (cible instanceof Heros) {
+			attaqueHeros(cible);
 		}
+
 	}
 
-	public void parcoursProvocation(Object cible) throws HearthstoneException {
+	public void attaqueServiteur(Object cible) throws HearthstoneException {
 		for (ICarte c : this.getAdversaire().getJeu()) {
-			if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
+			if ((c != cible) && (c instanceof Serviteur)
+					&& (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
 				throw new HearthstoneException(
 						"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");
-			} else if ((((Serviteur) c).getCapacite().getNom().equals("Provocation")) && (cible instanceof Heros)) {
-				throw new HearthstoneException(
-						"Vous essayez d'attaquer le heros alors que" + c.getNom() + " a provocation");
 			}
 		}
+		((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAttaque());
+		this.setPointdevie(this.getPointdevie() - ((Serviteur) cible).getAttaque());
+	}
+
+	public void attaqueHeros(Object cible) throws HearthstoneException {
+		for (ICarte c : this.getAdversaire().getJeu()) {
+			if ((c != cible) && (c instanceof Serviteur)
+					&& (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
+				throw new HearthstoneException(
+						"Vous essayer d'attaquer le heros alors que" + c.getNom() + "a provocation");
+			}
+		}
+		((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - this.getAttaque());
 	}
 
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
@@ -137,12 +146,6 @@ public class Serviteur extends Carte implements ICarte {
 		} else {
 			return false;
 		}
-	}
-
-	@Override
-	public IJoueur getAdversaire(IJoueur joueur) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
