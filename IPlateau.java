@@ -1,5 +1,7 @@
 package IPlateau;
 
+import java.util.ArrayList;
+
 import Exception.HearthstoneException;
 import IJoueur.IJoueur;
 
@@ -12,4 +14,5 @@ public interface IPlateau {
 	boolean estDemarree();
 	void finTour(IJoueur joueur)throws HearthstoneException;
 	void gagnerPartie(IJoueur joueur)throws HearthstoneException;
+	public ArrayList<IJoueur> getJoueurs();
 }

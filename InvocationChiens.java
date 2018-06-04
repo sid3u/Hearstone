@@ -5,39 +5,19 @@ package ICapacite;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 import IPlateau.*;
 
-	public class InvocationChiens {
+	public class InvocationChiens extends Capacite implements ICapacite {
 		
-		String nom;
-		String description;
-		Serviteur chien;
-		ICapacite charge;
+		private Serviteur chien;
 		
+		public InvocationChiens(String nom, String description,IJoueur adversaire) throws HearthstoneException {
+			super (nom,description);
+			@SuppressWarnings("unused")
+			Serviteur chien = new Serviteur("Chiens",1,0,1,adversaire);
 		
-		public InvocationChiens(String nom, String description) {
-			setNom(nom);
-			setDescription(description);	
-			chien.setAttaque(1);
-			chien.setPointdevie(1);
-		
-		}
-
-		public String getNom() {
-			return nom;
-		}
-
-		public void setNom(String nom) {
-			this.nom = nom;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
 		}
 
 		 public void executerEffetDebutTour() throws HearthstoneException {
@@ -56,14 +36,11 @@ import IPlateau.*;
 		public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		
 			int nbserviteur = Plateau.getInstance().getAdversaire((Joueur) cible).getJeu().size();
-			charge = new Piocher("lol","lol",3);
 			
 			for(int i = 1; i <= nbserviteur; i++) {
-			ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
-			chien.setProprietaire((Joueur) cible);	
-			chien.setCapacite(charge);
-			liste.add(((ICarte) chien));
-			((Joueur) cible).setJeu(liste);
+				ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
+				liste.add(((ICarte)chien));
+				((Joueur) cible).setJeu(liste);
 			}
 				
 		}

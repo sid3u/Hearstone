@@ -5,38 +5,17 @@ import java.util.ArrayList;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 
 
-public class ImageMiroir {
+public class ImageMiroir extends Capacite implements ICapacite{
+	private Serviteur serviteur;
 	
-	String nom;
-	String description;
-	Serviteur serviteur;
-	ICapacite charge;
-	
-	
-	public ImageMiroir(String nom, String description) {
-		setNom(nom);
-		setDescription(description);	
-		serviteur.setAttaque(0);
-		serviteur.setPointdevie(2);
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public ImageMiroir(String nom, String description,IJoueur adversaire) throws HearthstoneException {
+		super(nom,description);
+		ICapacite charge = new Charge();
+		serviteur = new Serviteur ("Serviteur mirroir",2,0,0,charge,adversaire);
 	}
 
 	 public void executerEffetDebutTour() throws HearthstoneException {
@@ -53,17 +32,12 @@ public class ImageMiroir {
 
 	
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-	
-		
-		charge = new Piocher("lol","lol",3);
 		
 		for(int i = 1; i <= 2; i++) {
-		ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
-		serviteur.setCapacite(charge);
-		liste.add(((ICarte) serviteur));
-		((Joueur) cible).setJeu(liste);
+			ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
+			liste.add(((ICarte)serviteur));
+			((Joueur) cible).setJeu(liste);
 		}
-			
 	}
 
 

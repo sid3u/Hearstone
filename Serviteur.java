@@ -4,26 +4,22 @@ import Exception.HearthstoneException;
 import ICapacite.*;
 import IJoueur.*;
 
-import IPlateau.*;
-
-public class Serviteur extends Carte {
+public class Serviteur extends Carte implements ICarte {
 	private int pointdevie;
 	private int attaque;
 	private boolean disparait;
 	private boolean peutattaquer;
-	private IPlateau plateau = Plateau.getInstance();
-	private IJoueur adversaire;
 
-	public Serviteur(String nom, int pdv, int cout, int attaque, ICapacite capacite) throws HearthstoneException {
-		super(nom, cout, capacite);
+	public Serviteur(String nom, int pdv, int cout, int attaque, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
+		super(nom, cout, capacite,proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setCapacite(capacite);
 		this.setPeutattaquer(false);
 	}
 
-	public Serviteur(String nom, int pdv, int attaque) throws HearthstoneException { // invocation sans capacite
-		super(nom, 0, null);
+	public Serviteur(String nom, int pdv,int cout, int attaque,IJoueur proprietaire) throws HearthstoneException { // invocation sans capacite
+		super(nom, 0, null,proprietaire);
 		this.setPointdevie(pdv);
 		this.setAttaque(attaque);
 		this.setPeutattaquer(false);
@@ -59,28 +55,9 @@ public class Serviteur extends Carte {
 		return attaque;
 	}
 
-	public void setAttaque(int attaque) {
+	public void setAttaque(int attaque) throws HearthstoneException{
+		if (attaque < 0) throw new HearthstoneException("Une attaque ne peut être négative");
 		this.attaque = attaque;
-	}
-
-	public int getPointdevie1() {
-		return pointdevie;
-	}
-
-	public IJoueur getAdversaire() {
-		return adversaire;
-	}
-
-	public void setAdversaire(IJoueur adversaire) throws HearthstoneException {
-		this.adversaire = adversaire;
-	}
-
-	public IPlateau getPlateau() {
-		return plateau;
-	}
-
-	public void setPlateau(IPlateau plateau) {
-		this.plateau = plateau;
 	}
 
 	@Override
@@ -117,7 +94,7 @@ public class Serviteur extends Carte {
 	}
 
 	public void executerAction(Object cible) throws HearthstoneException {
-		if (this.getCapacite().equals("Charge") && (this.isPeutattaquer() == false)) {
+		if ((this.getCapacite().getNom().equals("Charge")) && (this.isPeutattaquer() == false)) {
 			this.setPeutattaquer(true);
 		}
 		if ((cible instanceof Serviteur) || (cible instanceof Heros) && (this.isPeutattaquer() == true)) {
@@ -136,10 +113,10 @@ public class Serviteur extends Carte {
 
 	public void parcoursProvocation(Object cible) throws HearthstoneException {
 		for (ICarte c : this.getAdversaire().getJeu()) {
-			if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().equals("Provocation"))) {
+			if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
 				throw new HearthstoneException(
 						"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");
-			} else if ((((Serviteur) c).getCapacite().equals("Provocation")) && (cible instanceof Heros)) {
+			} else if ((((Serviteur) c).getCapacite().getNom().equals("Provocation")) && (cible instanceof Heros)) {
 				throw new HearthstoneException(
 						"Vous essayez d'attaquer le heros alors que" + c.getNom() + " a provocation");
 			}
@@ -160,6 +137,12 @@ public class Serviteur extends Carte {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public IJoueur getAdversaire(IJoueur joueur) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

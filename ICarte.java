@@ -1,6 +1,7 @@
 package ICarte;
 
 import Exception.HearthstoneException;
+import IJoueur.IJoueur;
 
 
 public interface ICarte {
@@ -13,4 +14,6 @@ public interface ICarte {
 	void executerEffetDisparition(Object cible)throws HearthstoneException;
 	boolean disparait();
 	public String toString();
+	public IJoueur getAdversaire(IJoueur joueur);
+	public IJoueur getProprietaire();
 }

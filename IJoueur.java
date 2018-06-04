@@ -18,6 +18,7 @@ public interface IJoueur {
 	int getStockMana();
 	ArrayList<ICarte> getMain();
 	ArrayList<ICarte> getJeu();
+	ArrayList<ICarte> getDeck();
 	ICarte getCarteEnJeu(String nomCarte);
 	ICarte getCarteEnMain(String nomCarteMain);
 	void prendreTour()throws HearthstoneException;

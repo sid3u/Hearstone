@@ -2,11 +2,12 @@ package ICarte;
 
 import Exception.HearthstoneException;
 import ICapacite.ICapacite;
+import IJoueur.IJoueur;
 
-public class Sort extends Carte {
+public class Sort extends Carte implements ICarte {
 
-	public Sort(String nom, int cout, ICapacite capacite) throws HearthstoneException {
-		super(nom, cout, capacite);
+	public Sort(String nom, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
+		super(nom, cout, capacite,proprietaire);
 	}
 
 	public String toString() {
@@ -50,5 +51,11 @@ public class Sort extends Carte {
 
 	public boolean disparait() {
 		return true;
+	}
+
+	@Override
+	public IJoueur getAdversaire(IJoueur joueur) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

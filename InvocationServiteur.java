@@ -4,57 +4,38 @@ import java.util.ArrayList;
 
 import Exception.HearthstoneException;
 import ICarte.*;
+import IJoueur.IJoueur;
 import IJoueur.Joueur;
 
+public class InvocationServiteur extends Capacite implements ICapacite {
+	private int att;
+	private int pdv;
+	private Serviteur muray;
+	String nominvoc;
 
-
-public class InvocationServiteur implements ICapacite {
-	String nom;
-	String description;
-	int Pdv;
-	int Att;
-	Serviteur Muray;
-	String NomInvocation;
-	
-	public InvocationServiteur(String nom, String description, int Pdv, int Att, String NomInvocation) {
-		setNom(nom);
-		setDescription(description);
-		Muray.setNom(NomInvocation);
-		Muray.setPointdevie(Pdv);
-		Muray.setAttaque(Att);
-		
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public InvocationServiteur(String nom, String description, int pdv, int att, String nominvoc, IJoueur prop)
+			throws HearthstoneException {
+		super(nom, description);
+		setPdv(pdv);
+		setAtt(att);
+		muray = new Serviteur(nominvoc, pdv, 0, att, prop);
 	}
 
 	public int getPdv() {
-		return Pdv;
+		return pdv;
 	}
 
-	public void setPdv(int pdv) {
-		Pdv = pdv;
+	private void setPdv(int pdv) throws HearthstoneException {
+		if (pdv < 0) throw new HearthstoneException("Points de vie négatif");
+		this.pdv = pdv;
 	}
 
 	public int getAtt() {
-		return Att;
+		return att;
 	}
 
-	public void setAtt(int att) {
-		Att = att;
+	private void setAtt(int att) {
+		this.att = att;
 	}
 
 	public boolean equals(Object obj) {
@@ -65,57 +46,44 @@ public class InvocationServiteur implements ICapacite {
 		if (getClass() != obj.getClass())
 			return false;
 		InvocationServiteur other = (InvocationServiteur) obj;
-		if (Att != other.Att)
+		if (att != other.att)
 			return false;
-		if (Pdv != other.Pdv)
-			return false;
-		if (description == null) {
-			if (other.description != null)
+		if (muray == null) {
+			if (other.muray != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!muray.equals(other.muray))
 			return false;
-		if (nom == null) {
-			if (other.nom != null)
+		if (nominvoc == null) {
+			if (other.nominvoc != null)
 				return false;
-		} else if (!nom.equals(other.nom))
+		} else if (!nominvoc.equals(other.nominvoc))
+			return false;
+		if (pdv != other.pdv)
 			return false;
 		return true;
 	}
 
 	public String toString() {
-		return "InvocationServiteur [nom=" + nom + ", description=" + description + ", Pdv=" + Pdv + ", Att=" + Att
-				+ "]";
+		return "InvocationServiteur [pdv=" + pdv + ", att=" + att + ", muray=" + muray + ", nominvoc=" + nominvoc + "]";
 	}
 
-	 public void executerEffetDebutTour() throws HearthstoneException {
-		
+	public void executerEffetDebutTour() throws HearthstoneException {
+
 	}
 
-	
-	public void executerEffetFinTour() throws HearthstoneException{
+	public void executerEffetFinTour() throws HearthstoneException {
 	}
 
-	
 	public void executerAction(Object cible) throws HearthstoneException {
 	}
 
-	
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-	
 		ArrayList<ICarte> liste = ((Joueur) cible).getJeu();
-		Muray.setProprietaire((Joueur) cible);
-		liste.add(((ICarte) Muray));
+		liste.add(((ICarte) muray));
 		((Joueur) cible).setJeu(liste);
-			
 	}
 
-
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {	
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 	}
-
-
-
-
-
 
 }

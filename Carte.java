@@ -2,16 +2,24 @@ package ICarte;
 
 import Exception.HearthstoneException;
 import ICapacite.ICapacite;
+import IJoueur.IJoueur;
+import IPlateau.IPlateau;
+import IPlateau.Plateau;
 
 public abstract class Carte implements ICarte {
 	private String nom;
 	private int cout;
 	private ICapacite capacite;
+	IJoueur proprietaire;
+	IJoueur adversaire;
+	private IPlateau plateau = Plateau.getInstance();
 
-	public Carte(String nom, int cout, ICapacite capacite) throws HearthstoneException {
+	public Carte(String nom, int cout, ICapacite capacite,IJoueur proprietaire) throws HearthstoneException {
 		this.setNom(nom);
 		this.setCout(cout);
 		this.setCapacite(capacite);
+		this.setProprietaire(proprietaire);
+		this.setAdversaire(proprietaire);
 	}
 
 	public String getNom() {
@@ -42,6 +50,36 @@ public abstract class Carte implements ICarte {
 
 	public void setCapacite(ICapacite capacite) {
 		this.capacite = capacite;
+	}
+	
+	public IJoueur getAdversaire()
+	{
+		return this.adversaire;
+	}
+	
+	public void setAdversaire(IJoueur prop) throws HearthstoneException{
+		if (prop == null) throw new HearthstoneException("Adversaire null");
+		for (IJoueur j : plateau.getJoueurs())
+			if (j != prop) this.adversaire = j;
+	}
+	
+	public IJoueur getProprietaire() {
+		return this.proprietaire;
+	}
+	
+	public void setProprietaire(IJoueur proprietaire)throws HearthstoneException
+	{
+		if (proprietaire == null) throw new HearthstoneException("Proprietaire null");
+		this.proprietaire=proprietaire;
+	}
+	
+	public IPlateau getPlateau() {
+		return plateau;
+	}
+
+	public void setPlateau(IPlateau plateau) throws HearthstoneException{
+		if (plateau == null) throw new HearthstoneException("Plateau null");
+		this.plateau = plateau;
 	}
 
 	public abstract void executerEffetDebutTour(Object cible) throws HearthstoneException;

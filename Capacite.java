@@ -7,7 +7,6 @@ public abstract class Capacite implements ICapacite {
 	private String description;
 	
 	public Capacite(String nom, String description) {
-		super();
 		this.setNom(nom);
 		this.setDescription(description);
 	}
@@ -17,14 +16,15 @@ public abstract class Capacite implements ICapacite {
 	}
 
 	private void setDescription(String description) {
-		description = description;
+		this.description = description;
 	}
 
-	protected String getNom() {
+	public String getNom() {
 		return this.nom;
 	}
 	
-	protected String getDescription() {
+	public
+	String getDescription() {
 		return this.description;
 	}
 

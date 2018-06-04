@@ -1,8 +1,9 @@
 package ICapacite;
 
 import Exception.HearthstoneException;
-import ICarte.*;
-import IJoueur.*;
+import ICarte.ICarte;
+import ICarte.Serviteur;
+import IJoueur.Heros;
 
 public class AttaqueCible extends Capacite implements ICapacite {
 
@@ -20,13 +21,9 @@ public class AttaqueCible extends Capacite implements ICapacite {
 	public void setAtt(int att) {
 		this.att = att;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	
+	public String toString() {
+		return "AttaqueCible [att=" + att + "]";
 	}
 
 	public boolean equals(Object obj) {
@@ -36,75 +33,49 @@ public class AttaqueCible extends Capacite implements ICapacite {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AttaqueDuHero other = (AttaqueDuHero) obj;
-		if (att != other.getAtt())
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
+		AttaqueCible other = (AttaqueCible) obj;
+		if (att != other.att)
 			return false;
 		return true;
 	}
 
-	public String toString() {
-		return "AttaqueDuHero [nom=" + nom + ", description=" + description + ", att=" + att + "]";
-	}
-	
 	public void executerEffetDebutTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void executerEffetFinTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void executerAction(Object cible) throws HearthstoneException {
-
-		if (((Serviteur) cible).getCapacite().getNom().equals("Provocation")) {
-			((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAtt());
-		} else {
-			for (ICarte c : ((Serviteur) cible).getAdversaire().getJeu()) {
-				if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().equals("Provocation"))) {
-					throw new HearthstoneException(
-							"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");
-				} else if ((((Serviteur) c).getCapacite().equals("Provocation")) && (cible instanceof Heros)) {
-					throw new HearthstoneException(
-							"Vous essayez d'attaquer un heros alors que" + c.getNom() + " a provocation");
-				}
-			}
-			if (cible instanceof Serviteur)
-				((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAtt());
-			else
-
-				((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - this.getAtt());
-		}
-
 	}
 
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		if ((cible instanceof Serviteur) || (cible instanceof Heros)) {
+			if (((Serviteur) cible).getCapacite().getNom().equals("Provocation")) {
+				((Serviteur) cible).setPointdevie(((Serviteur)cible).getPointdevie() - this.getAtt());
+			} else {
+				parcoursProvocation(cible);
+			}
+			if (cible instanceof Serviteur) {
+				((Serviteur) cible).setPointdevie(((Serviteur) cible).getPointdevie() - this.getAtt());
+			} else {
+				((Heros) cible).setPointdevie(((Heros) cible).getPointdevie() - this.getAtt());
+			}
+		}
+	}
+	
+	public void parcoursProvocation(Object cible) throws HearthstoneException {
+		for (ICarte c : ((ICarte)cible).getAdversaire(((Serviteur)cible).getProprietaire()).getJeu()) {
+			if ((c != cible) && (c instanceof Serviteur) && (((Serviteur) c).getCapacite().getNom().equals("Provocation"))) {
+				throw new HearthstoneException(
+						"Vous essayer d'attaquer un Serviteur alors que" + c.getNom() + "a provocation");
+			} else if ((((Serviteur) c).getCapacite().getNom().equals("Provocation")) && (cible instanceof Heros)) {
+				throw new HearthstoneException(
+						"Vous essayez d'attaquer le heros alors que" + c.getNom() + " a provocation");
+			}
+		}
 	}
 
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 }

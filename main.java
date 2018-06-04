@@ -10,7 +10,7 @@ import ICapacite.*;
 
 public class main {
 
-	public static void main(String[] args) {
+	public static void main () {
 		// Creation du plateau
 		Plateau plateau = Plateau.getInstance();
 
@@ -20,36 +20,70 @@ public class main {
 		ICapacite attaquemental = (ICapacite) new AttaqueDuHero("Attaque mentale","Inflige 5 points de d�gat au h�ros", 5);
 		ICapacite bonusdehurlevent = (ICapacite) new EffetPermanent("Bonus de hurlevent","Effet permanent sur les autres serviteurs alli�s donnant un bonus de 1/1",1,1);
 		ICapacite bonusduchefderaid = (ICapacite) new EffetPermanent("Bonus du chef de raid","Ajoute 1/0 au serviteur alli� ",1,0);
-		ICapacite provocation = (ICapacite) new Provocation("Provocation", "Empeche d'attaquer le h�ro");
+		ICapacite provocation = (ICapacite) new Provocation();
 		ICapacite attaquedulepreux = (ICapacite) new AttaqueDuHero("Attaque du l�preux","Inflige 2 ServiteurPoint de d�gats au h�ros", 2);
 		ICapacite golemisation = (ICapacite) new InvocationServiteur("Gol�misation","Invoque un	Golem endomag� +2/+1 qui n'a aucune	capacite",2,1,"Golem endomag�");
-		ICapacite attaquemassive = (ICapacite) new AttaqueTotal("Attaque Massive ","Inflige 4 points de d�gats � tous les serviteurs adverses",4);
+	//	ICapacite attaquemassive = (ICapacite) new AttaqueTotal("Attaque Massive ","Inflige 4 points de d�gats � tous les serviteurs adverses",4);
 		ICapacite attaquedugivre = (ICapacite) new AttaqueCible("Attaque du givre","Inflige 3 points de d�gats au personnage cibl�", 3);
 		ICapacite intelligencedesarcanes = (ICapacite) new Piocher("Intelligence des arcanes","Pioche deux cartes",2);
 	//	ICapacite imagemirroir = (ICapacite) new ImageMiroir("Image miroir","Invoque deux serviteurs de Jaina ayant 0/2 et provocation");
 		ICapacite explosionpyrotechnique = (ICapacite) new AttaqueCible("Explosion pyrotechnique","Inflige de 10 points de d�gats au personnage cibl�",10);
 		ICapacite busardaffame = (ICapacite) new Piocher("Busard affam�", " Pioche une carte",1);
-		ICapacite marqueduchasseur = (ICapacite) new MarqueduChasseur("Marque du chasseur", "Abaisse � 1 les points de vie du seviteur cibl�");
+		ICapacite marqueduchasseur = (ICapacite) new MarqueduChasseur();
 		ICapacite tirdesarcanes = (ICapacite) new AttaqueCible("Tir des arcanes","Inflige deux points de g�dats au personnage",2);
 		//ICapacite lachezleschiens = (ICapacite) new InvocationChiens("Invocations des chiens", "Invoque des wouaf wouaf");
 		ICapacite ordredetuer = (ICapacite) new AttaqueCible("Ordre de tuer","Inflige 3 points de d�gars au personnage cibl�",3);
 		ICapacite bouledefeu = (ICapacite) new AttaqueCible("Boule de feu", " Inflige 1 point de d�gat au personnage cibl�", 1);
-		ICapacite rex = (ICapacite) new AttaqueTotal("Cri de guerre","tous les serviteurs prennent cher",2);
+	//	ICapacite rex = (ICapacite) new AttaqueTotal("Cri de guerre","tous les serviteurs prennent cher",2);
 		
-		// Creation des cartes neutre
-		
+		// Creation des héros 
+				Heros rexxar = new Heros("Rexxar", rex);
+				Heros jayna = new Heros("Jayna", bouledefeu);
+				
+				IJoueur joueur1 = null;
+				IJoueur joueur2 = null;
+				
+				while (plateau.estDemarree() == false)
+				{
+					System.out.println("1-Voulez-vous ajouter un joueur? ");
+			
+					System.out.println("2-Voulez vous démarrer la partie?");
+					switch (k) {
+					case 1:
+						System.out.println("Saississez votre nom");
+						Scanner scan = new Scanner(System.in);
+						
+					}
+				}
+				// Ajout des joueurs dans le plateau
+				plateau.ajouterJoueur(joueur1);
+				plateau.ajouterJoueur(joueur2);
+		// Creation des cartes neutre du joueur 1
 
-	    ICarte Chassemareemurloc = new Serviteur("Chasse-mar�e murloc",1,2,2, crideguerre);
-	    ICarte Charge = new Sort("charge",1,charge);
-	    ICarte Attaquementale = new Sort("Attaque mentale", 2, attaquemental);
-	    ICarte Championdehurlevent = new Serviteur("Champion de Hurlevent",6,7,6, bonusdehurlevent);
-	    ICarte Chefderaid = new Serviteur("Chef de raid", 2,3,2, bonusduchefderaid);
-	    ICarte Gardedebaiedubutin = new Serviteur("Garde de Baie-Du-Butin", 4, 5,5, provocation);
-	    ICarte Lamissillieretemeraire = new Serviteur("La missili�re t�m�raire", 2,6,5, charge);
-	    ICarte Logremagi = new Serviteur("L'ogre-magi",4,4,4,provocation);
-	    ICarte Archimage = new Serviteur("Archimage",7,6,4,provocation);
-	    ICarte Gnomelepreux = new Serviteur("Gnome l�preux", 1,1,1, attaquedulepreux);
-	    ICarte Golemdesmoissons = new Serviteur("Golem des moissons", 3,3,2, golemisation);
+	    ICarte Chassemareemurloc_j1 = new Serviteur("Chasse-mar�e murloc",1,2,2, crideguerre,joueur1);
+	    ICarte Charge_j1 = new Sort("charge",1,charge,joueur1);
+	    ICarte Attaquementale_j1 = new Sort("Attaque mentale", 2, attaquemental,joueur1);
+	    ICarte Championdehurlevent_j1 = new Serviteur("Champion de Hurlevent",6,7,6, bonusdehurlevent,joueur1);
+	    ICarte Chefderaid_j1 = new Serviteur("Chef de raid", 2,3,2, bonusduchefderaid,joueur1);
+	    ICarte Gardedebaiedubutin_j1 = new Serviteur("Garde de Baie-Du-Butin", 4, 5,5, provocation,joueur1);
+	    ICarte Lamissillieretemeraire_j1 = new Serviteur("La missili�re t�m�raire", 2,6,5, charge,joueur1);
+	    ICarte Logremagi_j1 = new Serviteur("L'ogre-magi",4,4,4,provocation,joueur1);
+	    ICarte Archimage_j1 = new Serviteur("Archimage",7,6,4,provocation,joueur1);
+	    ICarte Gnomelepreux_j1 = new Serviteur("Gnome l�preux", 1,1,1, attaquedulepreux,joueur1);
+	    ICarte Golemdesmoissons_j1 = new Serviteur("Golem des moissons", 3,3,2, golemisation,joueur1);
+	    
+	    // Creation des cartes neutres du joueur 2
+	    ICarte Chassemareemurloc_j2 = new Serviteur("Chasse-mar�e murloc",1,2,2, crideguerre,joueur2);
+	    ICarte Charge_j2 = new Sort("charge",1,charge,joueur2);
+	    ICarte Attaquementale_j2 = new Sort("Attaque mentale", 2, attaquemental,joueur2);
+	    ICarte Championdehurlevent_j2 = new Serviteur("Champion de Hurlevent",6,7,6, bonusdehurlevent,joueur2);
+	    ICarte Chefderaid_j2 = new Serviteur("Chef de raid", 2,3,2, bonusduchefderaid,joueur2);
+	    ICarte Gardedebaiedubutin_j2 = new Serviteur("Garde de Baie-Du-Butin", 4, 5,5, provocation,joueur2);
+	    ICarte Lamissillieretemeraire_j2 = new Serviteur("La missili�re t�m�raire", 2,6,5, charge,joueur2);
+	    ICarte Logremagi_j2 = new Serviteur("L'ogre-magi",4,4,4,provocation,joueur2);
+	    ICarte Archimage_j2 = new Serviteur("Archimage",7,6,4,provocation,joueur2);
+	    ICarte Gnomelepreux_j2 = new Serviteur("Gnome l�preux", 1,1,1, attaquedulepreux,joueur2);
+	    ICarte Golemdesmoissons_j2 = new Serviteur("Golem des moissons", 3,3,2, golemisation,joueur2);
 	    
 	    // Creations des cartes de Jaina 
 	    
@@ -67,19 +101,6 @@ public class main {
 	 //   ICarte Lachezleschiens = new Sort("L�chez les chiens", 3, lachezleschiens);
 	    ICarte Ordredetuer = new Sort("Ordre de tuer", 3, ordredetuer);
 	    
-		
-		
-		// Creation des héros
-		Heros rexxar = new Heros("Rexxar", rex);
-		Heros jayna = new Heros("Jayna", bouledefeu);
-
-		// Creation des joueurs
-		Joueur joueur1 = new Joueur(rexxar, "Vincent");
-		Joueur joueur2 = new Joueur(jayna, "Nassym");
-
-		// Ajout des joueurs dans le plateau
-		plateau.ajouterJoueur(joueur1);
-		plateau.ajouterJoueur(joueur2);
 
 		// ajout des cartes dans le deck des joueurs
 		try {

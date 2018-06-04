@@ -4,33 +4,14 @@ import Exception.HearthstoneException;
 import IJoueur.*;
 import ICarte.*;
 
-public class EffetPermanent implements ICapacite {
-	private String nom;
-	private String description;
+public class EffetPermanent extends Capacite implements ICapacite {
 	private int batt;
 	private int bdef;
 
 	public EffetPermanent(String nom, String description, int batt, int bdef) {
-		setNom(nom);
-		setDescription(description);
+		super(nom,description);
 		setBatt(batt);
 		setBdef(bdef);
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public int getBatt() {
@@ -49,25 +30,34 @@ public class EffetPermanent implements ICapacite {
 		this.bdef = bdef;
 	}
 
-	@Override
+	public String toString() {
+		return "EffetPermanent [batt=" + batt + ", bdef=" + bdef + "]";
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EffetPermanent other = (EffetPermanent) obj;
+		if (batt != other.batt)
+			return false;
+		if (bdef != other.bdef)
+			return false;
+		return true;
+	}
+
 	public void executerEffetDebutTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 
-	@Override
 	public void executerEffetFinTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 
-	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		for (ICarte c : ((Joueur) cible).getJeu()) {
 			((Serviteur) c).setPointdevie(((Serviteur) c).getPointdevie() + bdef);
@@ -75,7 +65,6 @@ public class EffetPermanent implements ICapacite {
 		}
 	}
 
-	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 		for (ICarte c : ((Joueur) cible).getJeu()) {
 			((Serviteur) c).setPointdevie(((Serviteur) c).getPointdevie() - bdef);

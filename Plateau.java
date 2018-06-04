@@ -17,7 +17,8 @@ public class Plateau implements IPlateau {
 		joueurCourant = null;
 	}
 
-	public void setPartie(boolean partie) {
+	public void setPartie(boolean partie) throws HearthstoneException{
+		if (estDemarree() == true) throw new HearthstoneException("Partie déja lancé");
 		this.partie = partie;
 	}
 
@@ -32,7 +33,7 @@ public class Plateau implements IPlateau {
 		return joueurs;
 	}
 
-	public void setJoueurs(ArrayList<IJoueur> joueurs) {
+	private void setJoueurs(ArrayList<IJoueur> joueurs) {
 		this.joueurs = joueurs;
 	}
 
